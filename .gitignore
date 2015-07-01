@@ -16,3 +16,8 @@ vhosts/*
 !vhosts/___.https.conf-EXAMPLE
 !vhosts/000-default.http.conf
 !vhosts/000-default.https.conf
+
+# Default vhost.
+vhosts-default/http/*
+!vhosts-default/http/index.html
+!vhosts-default/http/phpinfo.php
