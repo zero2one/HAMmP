@@ -1,0 +1,15 @@
+
+# Exclude generated SSL certificates.
+include/ssl/*
+!include/ssl/ssl-shared-cert.inc
+
+# Exclude logs.
+log/*
+!log/.gitkeep
+
+# Exclude local vhost configuration.
+vhosts/*
+!vhosts/___.http.conf-EXAMPLE
+!vhosts/___.https.conf-EXAMPLE
+!vhosts/000-default.http.conf
+!vhosts/000-default.https.conf
