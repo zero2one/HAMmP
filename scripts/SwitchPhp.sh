@@ -22,7 +22,8 @@ fi
 
 # Check if the given version is not already active.
 if [ "$newversion" == "$currentversion" ]; then
-  echo "PHP version is already $newversion."
+  echo "PHP version is already $newversion., restarting..."
+  brew services restart "php$currentversion"
   echo
   exit 0
 fi 
