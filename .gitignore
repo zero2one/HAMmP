@@ -1,4 +1,7 @@
 
+# Exclude generated config files.
+conf.d/hostname.conf
+
 # Exclude generated SSL certificates.
 include/ssl/*
 !include/ssl/ssl-shared-cert.inc

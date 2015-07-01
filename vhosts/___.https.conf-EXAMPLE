@@ -1,0 +1,36 @@
+
+<VirtualHost *:8443> 
+  ServerAdmin webmaster@localhost
+  
+  # Change this your local domain name.
+  # Don't forget to add it to the /etc/hosts file.
+  ServerName	NAME-OF-THE-PROJECT.dev
+
+  # Change the DocumentRoot to the root path of your project.
+  # Do not add a trailing / to the path.
+  DocumentRoot /Volumes/webdev/www/NAME-OF-THE-PROJECT.dev/web
+  
+  # Change the Directory to the root path of your project.
+  # Do not forget to add the trailing / to the path.
+  <Directory /Volumes/webdev/www/NAME-OF-THE-PROJECT.dev/web/> 
+    Options Indexes FollowSymLinks MultiViews
+    
+    AllowOverride All
+    <IfModule mod_authz_core.c>
+      Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+      Order allow,deny
+      Allow from all
+    </IfModule>
+  </Directory>
+  
+  # Include the shared SSL configuration.
+  Include "/Volumes/webdev/www/_apache/include/ssl/ssl-shared-cert.inc"
+
+  # Change the name of the log files corresponding the domain name.
+  ErrorLog /Volumes/webdev/www/_apache/log/NAME-OF-THE_PROJECT.dev-https-error.log
+  LogLevel warn
+  CustomLog /Volumes/webdev/www/_apache/log/NAME-OF-THE_PROJECT.dev-https-access.log combined 
+
+</VirtualHost>
