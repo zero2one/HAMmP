@@ -104,7 +104,7 @@ function menu {
 	echo "| `cwhite Manage\ Brew\ AMP\ Stack`                              |"
 	echo "|  Apache      :  `cgreen 11` Start    `cred 12` Stop    `cyellow 13` Restart  |"
 	echo "|  MySQL       :  `cgreen 21` Start    `cred 22` Stop    `cyellow 23` Restart  |"
-	echo "|  Tomcat 8    :  `cgreen 41` Start    `cred 42` Stop    `cyellow 43` Restart  |"
+	echo "|  Solr        :  `cgreen 41` Start    `cred 42` Stop    `cyellow 43` Restart  |"
 	echo "|  Mailcatcher :  `cgreen 61` Start    `cred 62` Open UI             |"
 	echo "|                                                    |"
 	echo "| `cwhite Switch\ PHP\ version` (Current $PHP)$PHP_AFTER                |"
@@ -151,17 +151,16 @@ function menu_execute {
 		
   # TOMCAT (Solr)	
 	41)
-		echo "Starting Tomcat 8 server (Solr 4.x)"
-		/opt/tomcat8/bin/startup.sh
+		echo "Starting Solr"
+		solr start
 		;;
 	42)
-		echo "Stopping Tomcat 8 server (Solr 4.x)"
-		/opt/tomcat8/bin/shutdown.sh
+		echo "Stopping Solr"
+		solr stop
 		;;
 	43)
-		menu_execute 42
-		echo
-		menu_execute 41
+		echo "Restarting Solr"
+		solr restart
 		;;
 	  
 	  
