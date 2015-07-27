@@ -109,6 +109,7 @@ function menu {
 	echo "|                                                    |"
 	echo "| `cwhite Switch\ PHP\ version` (Current $PHP)$PHP_AFTER                |"
 	echo "|  `cblue 53` 5.3         `cblue 54` 5.4      `cblue 55` 5.5     `cblue 56` 5.6      |"
+	echo "|  `cblue 70` 7.0                                            |"
 	echo "|                                                    |"
 #	echo "| `cwhite PHP\ Configuration`                                  |"
 #	echo "|  `cblue 83` 5.3         `cblue 84` 5.4      `cblue 85` 5.5     `cblue 86` 5.6      |"
@@ -186,7 +187,10 @@ function menu_execute {
 	5[3-6])
 		php_switch $1
 		;;
-				
+
+  7[0-9])
+		php_switch $1
+		;;
 		
 	# PHP config
 	8[3-6])
