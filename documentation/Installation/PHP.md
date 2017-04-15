@@ -1,20 +1,16 @@
 # PHP
 
-
-
 ## Install multiple PHP version
-We want an environment where we can switch between PHP versions. 
+We want an environment where we can switch between the current active PHP 
+versions. This are 5.6.x, 7.0.x and 7.1.x.
 
-To do so we install PHP 5.3 > 7.1. Feel free to leave out the versions you 
-don't want.
+This describes how to setup Apache with multiple PHP versions.
+You can optionally [install old PHP versions](PHP-old-versions.md).
+
+To do so we install PHP 5.6 > 7.1. Feel free to leave out the versions you 
+don't need.
 
 ```bash
-$ brew install -v homebrew/php/php53
-$ brew unlink php53
-$ brew install -v homebrew/php/php54
-$ brew unlink php54
-$ brew install -v homebrew/php/php55
-$ brew unlink php55
 $ brew install -v homebrew/php/php56
 $ brew unlink php56
 $ brew install -v homebrew/php/php70
@@ -43,21 +39,6 @@ We update:
 
 We need to update the config for each PHP version:
 
-#### PHP 5.3
-```bash
-$ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php53-error.log'$'\n' $(brew --prefix)/etc/php/5.3/php.ini
-```
-
-#### PHP 5.4
-```bash
-$ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php54-error.log'$'\n' $(brew --prefix)/etc/php/5.4/php.ini
-```
-
-####	PHP 5.5
-```bash
-$ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php55-error.log'$'\n' $(brew --prefix)/etc/php/5.5/php.ini
-```
-
 #### PHP 5.6
 ```bash
 $ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php56-error.log'$'\n' $(brew --prefix)/etc/php/5.6/php.ini
@@ -77,21 +58,6 @@ $ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo syste
 
 ###	Pear & Pecl
 Fix a pear and pecl permissions problem:
-
-#### PHP 5.3
-```bash
-$ chmod -R ug+w $(brew --prefix php53)/lib/php
-```
-
-#### PHP 5.4
-```bash
-$ chmod -R ug+w $(brew --prefix php54)/lib/php
-```
-
-#### PHP 5.5
-```bash
-$ chmod -R ug+w $(brew --prefix php55)/lib/php
-```
 
 #### PHP 5.6
 ```bash
@@ -113,29 +79,9 @@ $ chmod -R ug+w $(brew --prefix php71)/lib/php
 The optional Opcache extension will speed up your PHP environment 
 dramatically, so let's install it. Then, we'll bump up the opcache memory limit:
 
-#### PHP 5.3
-```bash
-$ brew install -v php53-opcache
-$ /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.3/php.ini
-```
-
-#### PHP 5.4
-```bash
-$ brew unlink php53 && brew link php54
-$ brew install -v php54-opcache
-$ /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.4/php.ini
-```
-
-#### PHP 5.5
-```bash
-$ brew unlink php54 && brew link php55
-$ brew install -v php55-opcache
-$ /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.5/php.ini
-```
-
 #### PHP 5.6
 ```bash
-$ brew unlink php55 && brew link php56
+$ brew link php56
 $ brew install -v php56-opcache
 $ /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.6/php.ini
 ```
@@ -159,27 +105,9 @@ $ /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=
 ### Install Intl extension
 Composer & Symfony2 recommends the installation of the PHP Intl extension:
 
-#### PHP 5.3
-```bash
-$ brew unlink php71 && brew link php53
-$ brew install php53-intl
-```
-
-#### PHP 5.4
-```bash
-$ brew unlink php53 && brew link php54
-$ brew install php54-intl
-```
-
-#### PHP 5.5
-```bash
-$ brew unlink php54 && brew link php55
-$ brew install php55-intl
-```
-
 #### PHP 5.6
 ```bash
-$ brew unlink php55 && brew link php56
+$ brew unlink php71 && brew link php56
 $ brew install php56-intl
 ```
 
@@ -196,10 +124,11 @@ $ brew install php71-intl
 ```
 
 
-## Start Apache
+## Restart Apache
 Finaly we can start Apache:
 
 ```bash
+$ brew services stop httpd24
 $ brew services start httpd24
 ```
 
@@ -211,48 +140,27 @@ $ brew services start php71
 ```
 
 
-
 ## Test
-You should now be able to access your local server:
+You should now be able to run PHP scripts:
 
-*	http: http://localhost:8080
-*	https: https://localhost:8443
-
-As you can see, we need to add the port number to the URL, we will fix this 
-is the next chapter.
-
+*	http: http://localhost/phpinfo.php
+*	https: https://localhost/phpinfo.php
 
 
 ## Switch between PHP versions
-Enable the script to switch between PHP versions:
-
-```php
-$ chmod +x /Volumes/webdev/www/_apache/scripts/SwitchPhp.sh
-```
-
-We need to add an alias to our .bash_profile so we don't need to remember the path where the script is located:
-
-```bash
-$ cat >> ~/.bash_profile <<EOF
-  
-alias sphp='/Volumes/webdev/www/_apache/scripts/SwitchPhp.sh'
-  
-EOF
-```
-
-Reload the bash_profile file so we can use the script.
-
-```bash
-$ source ~/.bash_profile
-```
-
-We now can start the script from command line:
+The `/Volumes/Webdev/www/_apache/bin` directory of the HAMmP repository contains
+a helper script to switch between the different PHP versions:
 
 ```
-$ sphp 53
-$ sphp 54
-$ sphp 55
 $ sphp 56
 $ sphp 70
 $ sphp 71
 ```
+
+
+
+
+---
+* [Next : Xdebug](./Xdebug.md)
+* [Install older PHP versions](./PHP-old-versions.md)
+* [Overview](../README.md)
