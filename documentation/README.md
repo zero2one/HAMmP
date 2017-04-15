@@ -25,7 +25,7 @@ multiple PHP versions and optional extra's.
 ### Installation
 * [Preparation](Installation/Preparation.md)
 * [Homebrew](Installation/Homebrew.md)
-* [MySQL](Installation/MySQL.md)
+* [MariaDB](Installation/MariaDB.md)
 * [Apache](Installation/Apache.md)
 * [PHP](Installation/PHP.md)
 * [Port Forwarding](Installation/Port-Forwarding.md)
