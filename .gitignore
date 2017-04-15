@@ -1,3 +1,5 @@
+# Exclude ide.
+.idea
 
 # Exclude generated config files.
 conf.d/hostname.conf

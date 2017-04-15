@@ -9,60 +9,41 @@ separate case sensitive partition.
 
 > **Note** : This step is optional.
 
-*	Open the Disk Utility (Applications > Utilities > Disk Utility)
-*	Select the Main harddisk, Open the Partition tab.
-*	Resize the "Macintosh HD" partition until you have enough space for web 
+* Open the Disk Utility (Applications > Utilities > Disk Utility)
+  ![Disk Utility](./media/preparation-disk-1-utility.png)
+* Select the Main harddisk, Open the Partition tab.
+* Resize the "Macintosh HD" partition until you have enough space for web 
   development.
-*	Create a new partition with the free disk space.
-*	Give it the name "webdev", select "Mac OS Extended (case-sensitive, 
-  Journaled)" as the file system.
-*	Click on Apply to apply the changes. The Macintosh HD partition will be 
+  ![Disk Utility](./media/preparation-disk-2-resize.png)
+* Create a new partition with the free disk space, give it the name "webdev", 
+  select "Mac OS Extended (case-sensitive, Journaled)" as the file system.
+  ![Disk Utility](./media/preparation-disk-3-new-partition.png)
+* Click on Apply to apply the changes. The Macintosh HD partition will be 
   resized and the new partition will be added.
-
-> TODO : Add picture here!
+  ![Disk Utility](./media/preparation-disk-4-done.png)
 
 We will use that partition for storing the Apache's vhosts.
 
 
 
-## Install Xcode
+## Install Xcode Command line tools
 We need command line tools to compile and install custom PHP plugins.
 
-We need to have Xcode installed to have the necessary tools. You can install 
-Xcode for free trough the App Store.
+We need to have Xcode Command line toolsinstalled to have the necessary tools. 
 
-Open the App store, search for Xcode and install the application.
-
-> TODO: Add picture here!
-
-
- 
-## Install Homebrew
-Install homebrew as described in their documentation:
+Run the following command to only install the Xcode essentials including the 
+Command line tools:
 
 ```bash
-$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ xcode-select --install
 ```
 
-Make sure to add the Homebrew's sbin directory to the path:
-
-```bash
-$ echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile
-```
-
-
-## OpenSSL
-OpenSSL is needed for PHP 5.6 (source: http://akrabat.com/ssl-certificate-verification-on-php-5-6/).
-
-```bash
-$ brew install openssl
-```
+> **Note** : Installing Xcode essentials is done trough the Software Updates
+> interface (App store).
 
 
 
-## Wget
-Tools like drush require wget. Install it using homebrew:
- 
-```bash
-$ brew install wget
-```
+
+---
+* [Next : Homebrew](./Homebrew.md)
+* [Overview](../README.md)
