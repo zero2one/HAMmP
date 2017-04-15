@@ -15,7 +15,7 @@ separate case sensitive partition.
 * Resize the "Macintosh HD" partition until you have enough space for web 
   development.
   ![Disk Utility](./media/preparation-disk-2-resize.png)
-* Create a new partition with the free disk space, give it the name "webdev", 
+* Create a new partition with the free disk space, give it the name "Webdev", 
   select "Mac OS Extended (case-sensitive, Journaled)" as the file system.
   ![Disk Utility](./media/preparation-disk-3-new-partition.png)
 * Click on Apply to apply the changes. The Macintosh HD partition will be 

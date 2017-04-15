@@ -7,22 +7,63 @@ as our web root.
 Create a www folder on the new partition:
 
 ```bash
-$ mkdir -p /Volumes/webdev/www
+$ mkdir -p /Volumes/Webdev/www
 ```
 
 Clone the folder structure, configuration & scripts from GitHub in the new 
 directory:
 
 ```bash
-$ git clone https://github.com/zero2one/HAMmP.git /Volumes/webdev/www/_apache
+$ git clone https://github.com/zero2one/HAMmP.git /Volumes/Webdev/www/_apache
 ```
 
-You should now have a directory called /Volumes/webdev/www/_apache
+You should now have a directory called /Volumes/Webdev/www/_apache
 
 > **Note** : Cloning the default folder structure, configuration & scripts to 
 > the proper location is very important for the rest of the installation 
 > process!
 
+
+## Add the HaMmP bin directory to $PATH
+Add the HAmMP bin directory to your `$PATH` environment variable so we can use 
+the included bash scripts.
+
+> **Note** : Check first if you already have a .bash_profile file in your home 
+directory. If not create a new one!
+
+_Multiline command, copy all at once:_
+
+```bash
+$ cat >> ~/.bash_profile <<EOF
+#!/bin/bash
+
+EOF
+```
+
+Add the bin directory to `$PATH`:
+
+_Multiline command, copy all at once:_
+
+```bash
+$ cat >> ~/.bash_profile <<EOF
+
+# HAMmP -----------------------------------------------
+PATH="/Volumes/Webdev/www/_apache/bin:$PATH"
+
+EOF
+```
+
+Load the altered `.bash_profile` file:
+
+```bash
+source ~/.bash_profile
+```
+
+Make sure that the scripts can be executed:
+
+```bash
+$ chmod +x /Volumes/Webdev/www/_apache/bin/*
+```
 
 
 ##	Disable build-in Apache
@@ -132,3 +173,10 @@ Include /Volumes/webdev/www/_apache/conf.d/*.conf
 Include /Volumes/webdev/www/_apache/vhosts/*.conf
 EOF
 ```
+
+
+
+
+---
+* [Next : PHP](./PHP.md)
+* [Overview](../README.md)
