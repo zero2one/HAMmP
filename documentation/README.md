@@ -28,14 +28,13 @@ multiple PHP versions and optional extra's.
 * [MariaDB](Installation/MariaDB.md)
 * [Apache](Installation/Apache.md)
 * [PHP](Installation/PHP.md)
-* [Port Forwarding](Installation/Port-Forwarding.md)
-* [Management Script](Installation/Management-Script.md)
 * [Xdebug](Installation/Xdebug.md)
 * [Composer](Installation/Composer.md)
 * [PHPUnit](Installation/PHPUnit.md)
 * [PHP Code Sniffers](Installation/Code-Sniffers.md)
 * [BlackFire](Installation/Blackfire.md)
 * [Mailcatcher](Installation/Mailcatcher.md)
+* [Management Script](Installation/Management-Script.md)
 
 
 ### Optional extra's

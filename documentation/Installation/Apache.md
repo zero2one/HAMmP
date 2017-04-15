@@ -174,6 +174,72 @@ Include /Volumes/webdev/www/_apache/vhosts/*.conf
 EOF
 ```
 
+## Start Apache
+Finaly we can start Apache:
+
+```bash
+$ brew services start httpd24
+```
+
+
+## Test
+You should now be able to access your local server:
+
+*	http: http://localhost:8080
+*	https: https://localhost:8443
+
+
+## Port fowarding
+You may notice that httpd.conf is running Apache on ports 8080 and 8443.
+
+Manually adding ":8080" each time you're referencing your dev sites is no fun, 
+but running Apache on port 80 requires root.
+
+The next two commands will create and load a firewall rule to forward port 80 
+requests to 8080, and port 443 requests to 8443. The end result is that we 
+don't need to add the port number when visiting a project dev site, like 
+"http://projectname.dev/" instead of "http://projectname.dev:8080/".
+
+The following command will create the file 
+`/Library/LaunchDaemons/co.echo.httpdfwd.plist` as root, and owned by root, 
+since it needs elevated privileges:
+
+```bash
+$ sudo bash -c 'export TAB=$'"'"'\t'"'"'
+cat > /Library/LaunchDaemons/co.echo.httpdfwd.plist <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+${TAB}<key>Label</key>
+${TAB}<string>co.echo.httpdfwd</string>
+${TAB}<key>ProgramArguments</key>
+${TAB}<array>
+${TAB}${TAB}<string>sh</string>
+${TAB}${TAB}<string>-c</string>
+${TAB}${TAB}<string>echo "rdr pass proto tcp from any to any port {80,8080} -> 127.0.0.1 port 8080" | pfctl -a "com.apple/260.HttpFwdFirewall" -Ef - &amp;&amp; echo "rdr pass proto tcp from any to any port {443,8443} -> 127.0.0.1 port 8443" | pfctl -a "com.apple/261.HttpFwdFirewall" -Ef - &amp;&amp; sysctl -w net.inet.ip.forwarding=1</string>
+${TAB}</array>
+${TAB}<key>RunAtLoad</key>
+${TAB}<true/>
+${TAB}<key>UserName</key>
+${TAB}<string>root</string>
+</dict>
+</plist>
+EOF'
+```
+
+This file will be loaded on login and set up the 80->8080 and 443->8443 port 
+forwards, but we can load it manually now so we don't need to log out and back 
+in:
+
+```bash
+$ sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
+```
+
+Now we can access the localhost on the default ports:
+
+*	http: http://localhost
+*	https: https://localhost
 
 
 
