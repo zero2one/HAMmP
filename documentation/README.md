@@ -31,6 +31,7 @@ multiple PHP versions and optional extra's.
 * [Xdebug](Installation/Xdebug.md)
 * [Composer](Installation/Composer.md)
 * [PHPUnit](Installation/PHPUnit.md)
+* [Drush](Installation/Drush.md)
 * [PHP Code Sniffers](Installation/Code-Sniffers.md)
 * [BlackFire](Installation/Blackfire.md)
 * [Mailcatcher](Installation/Mailcatcher.md)
