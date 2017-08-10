@@ -28,27 +28,29 @@ multiple PHP versions and optional extra's.
 * [MariaDB](Installation/MariaDB.md)
 * [Apache](Installation/Apache.md)
 * [PHP](Installation/PHP.md)
-* [Xdebug](Installation/Xdebug.md)
-* [Composer](Installation/Composer.md)
-* [PHPUnit](Installation/PHPUnit.md)
-* [Drush](Installation/Drush.md)
+* [Xdebug](Installation/PHP-Xdebug.md)
+* [Composer](Installation/PHP-Composer.md)
+* [PHPUnit](Installation/PHP-PHPUnit.md)
 * [PHP Code Sniffers](Installation/PHP-Code-Sniffers.md)
+* [BlackFire](Installation/PHP-Blackfire.md)
+* [Drush](Installation/Drupal-Drush.md)
 * [Drupal Code Standards](Installation/Drupal-Code-Standards.md)
-* [BlackFire](Installation/Blackfire.md)
 * [Mailcatcher](Installation/Mailcatcher.md)
 * [Management Script](Installation/Management-Script.md)
 
 
 ### Optional extra's
 * [Drupal Tools](Optional/Drupal-Tools.md)
-* [Frontend Tools](Optional/Frontend-Tools.md)
+* [Ruby](Optional/Ruby.md)
+* [Node JS](Optional/Node-js.md)
 * [Apache Solr](Optional/Apache-Solr.md)
 * [Tika](Optional/Tika.md)
+* [Redis](Optional/Redis.md)
 
 
 ### How to's
 * [Add Apache vhost](HowTo/Add-Apache-Vhost.md)
-* [Add Solr core](HowTo/Add-Solr-Core.md)
+* [Add Solr core](HowTo/Apache-Solr-Add-Core.md)
 * [MySQL Back-up](HowTo/MySQL-Backup.md) : Take a mysqldump with each database 
   in its own SQL File
 

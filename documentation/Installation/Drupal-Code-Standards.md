@@ -5,7 +5,7 @@ can be configured to auto inspect the project using these standards.
 
 
 ## Requirements
-* [Composer](./Composer.md)
+* [Composer](PHP-Composer.md)
   We are installing the tools through composer, make sure that Composer is 
   installed globally.
 * [PHP Code Sniffer](./PHP-Code-Sniffers.md#PHP-Code-Sniffer)

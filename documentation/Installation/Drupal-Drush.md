@@ -9,7 +9,7 @@ More info: https://github.com/drush-ops/drush
 
 
 ## Requirements
-* [Composer](./Composer.md) : 
+* [Composer](PHP-Composer.md) : 
   We are installing Drush trough composer, make sure that Composer is installed 
   globally.
 * [wget](./Homebrew.md#Wget) : Drush uses wget to get packages from the 
@@ -144,5 +144,5 @@ $ drush dl drush_language
 
 
 ---
-* [Next : Drush](./PHPUnit.md)
+* [Next : Drush](PHP-PHPUnit.md)
 * [Overview](../README.md)

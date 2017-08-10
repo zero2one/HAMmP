@@ -29,7 +29,8 @@ xdebug.remote_port=10000
 xdebug.remote_handler="dbgp"
 xdebug.remote_host="localhost"
 xdebug.idekey=PHPSTORM
- 
+xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
+
 EOF
 ```
 
@@ -154,5 +155,5 @@ This can be handy to temporary hide this information (or errors) from the screen
 
 
 ---
-* [Next : Composer](./Composer.md)
+* [Next : Composer](PHP-Composer.md)
 * [Overview](../README.md)

@@ -32,6 +32,33 @@ $ brew install wget
 ```
 
 
+## Imagemagic
+We use imagemagic in PHP to modify images.
+
+There is a problem with the libjpeg version included in Homebrew and the one
+supported by php. To overcome that problem we install libjpeg version 8d from 
+source:
+
+```bash
+$ wget -c http://www.ijg.org/files/jpegsrc.v8d.tar.gz
+$ tar -xzf jpegsrc.v8d.tar.gz
+$ cd jpeg-8d
+$ ./configure
+$ make
+$ cp ./.libs/libjpeg.8.dylib /usr/local/opt/jpeg/lib
+$ cd ../
+$ rm -R jpeg-8d
+$ rm jpegsrc.v8d.tar.gz
+```
+
+Install imagemagick:
+
+```bash
+$ brew install imagemagick@6
+$ brew link imagemagick@6 --force
+```
+
+
 
 
 ---

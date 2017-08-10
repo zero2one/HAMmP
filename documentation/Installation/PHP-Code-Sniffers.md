@@ -1,7 +1,7 @@
 # PHP Code Sniffers
 
 ## Requirements
-* [Composer](./Composer.md)
+* [Composer](PHP-Composer.md)
   We are installing the tools through composer, make sure that Composer is 
   installed globally.
 

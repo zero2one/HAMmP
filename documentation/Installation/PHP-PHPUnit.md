@@ -5,7 +5,7 @@ It is an instance of the xUnit architecture for unit testing frameworks.
 
 
 ## Requirements
-* [Composer](./Composer.md)
+* [Composer](PHP-Composer.md)
   We are installing PHPUnit trough composer, make sure that Composer is 
   installed globally.
 

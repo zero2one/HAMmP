@@ -5,7 +5,7 @@ We want an environment where we can switch between the current active PHP
 versions. This are 5.6.x, 7.0.x and 7.1.x.
 
 This describes how to setup Apache with multiple PHP versions.
-You can optionally [install old PHP versions](PHP-old-versions.md).
+You can optionally [install old PHP versions](PHP-Older-Versions.md).
 
 To do so we install PHP 5.6 > 7.1. Feel free to leave out the versions you 
 don't need.
@@ -124,8 +124,32 @@ $ brew install php71-intl
 ```
 
 
+
+### Install ImageMagick extension
+ImageMagick is a powerfull library to manipulate images.
+
+#### PHP 5.6
+```bash
+$ brew unlink php71 && brew link php56
+$ brew install -s php56-imagick
+```
+
+#### PHP 7.0
+```bash
+$ brew unlink php56 && brew link php70
+$ brew install -s php70-imagick
+```
+
+#### PHP 7.1
+```bash
+$ brew unlink php70 && brew link php71
+$ brew install -s php71-imagick
+```
+
+
+
 ## Restart Apache
-Finaly we can start Apache:
+Finaly we can restart Apache:
 
 ```bash
 $ brew services stop httpd24
@@ -161,6 +185,6 @@ $ sphp 71
 
 
 ---
-* [Next : Xdebug](./Xdebug.md)
-* [Install older PHP versions](./PHP-old-versions.md)
+* [Next : Xdebug](PHP-Xdebug.md)
+* [Install older PHP versions](PHP-Older-Versions.md)
 * [Overview](../README.md)
