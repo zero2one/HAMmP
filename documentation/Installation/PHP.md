@@ -183,6 +183,44 @@ $ sphp 71
 
 
 
+## Certificate files
+If you want to access URI (eg. services) trough PHP that are hosted on self 
+signed ssl domains, you can trust those certificates by adding them to the MacOS
+keychain.
+
+You need to add the keychain ca files to the PHP configuration:
+
+Edit the ini file of the proper PHP version:
+
+```bash
+$ vi $(brew --prefix)/etc/php/5.6/php.ini
+$ vi $(brew --prefix)/etc/php/7.0/php.ini
+$ vi $(brew --prefix)/etc/php/7.1/php.ini
+```
+
+Uncomment and fill in the keychain paths:
+
+```
+[openssl]
+; The location of a Certificate Authority (CA) file on the local filesystem
+; to use when verifying the identity of SSL/TLS peers. Most users should
+; not specify a value for this directive as PHP will attempt to use the
+; OS-managed cert stores in its absence. If specified, this value may still
+; be overridden on a per-stream basis via the "cafile" SSL stream context
+; option.
+openssl.cafile=/usr/local/etc/openssl/cert.pem
+ 
+; If openssl.cafile is not specified or if the CA file is not found, the
+; directory pointed to by openssl.capath is searched for a suitable
+; certificate. This value must be a correctly hashed certificate directory.
+; Most users should not specify a value for this directive as PHP will
+; attempt to use the OS-managed cert stores in its absence. If specified,
+; this value may still be overridden on a per-stream basis via the "capath"
+; SSL stream context option.
+openssl.capath=/usr/local/etc/openssl/certs
+```
+
+
 
 ---
 * [Next : Xdebug](PHP-Xdebug.md)
