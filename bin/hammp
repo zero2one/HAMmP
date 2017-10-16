@@ -130,13 +130,13 @@ function menu_execute {
 	
 	# APACHE
 	11)
-		brew services start httpd24
+		brew services start httpd
 		;;
 	12)
-		brew services stop httpd24
+		brew services stop httpd
 		;;
 	13)
-		brew services restart httpd24
+		brew services restart httpd
 		;;
 		
 	# MySQL
@@ -200,7 +200,7 @@ function menu_execute {
 
   # APACHE config.
 	91)
-		vi $(brew --prefix)/etc/apache2/2.4/httpd.conf
+		vi /usr/local/etc/httpd/httpd.conf
 		;;
 		
 	# PHP : Currently active config.
