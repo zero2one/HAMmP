@@ -6,7 +6,7 @@ as our web root.
 
 Create a www folder on the new partition:
 
-```bash
+```bash
 $ mkdir -p /Volumes/Webdev/www
 ```
 
@@ -119,7 +119,7 @@ remove all references to the mod_fastcgi module (we'll re-add the new version
 later):
 
 ```bash
-$ sed -i '' '/fastcgi_module/d' $(brew --prefix)/etc/apache2/2.4/httpd.conf
+$ sed -i '' '/fastcgi_module/d' $(brew --prefix)/etc/httpd/httpd.conf
 ```
 
 
@@ -167,7 +167,7 @@ location to Apache so they are loaded on startup:
 _Multiline command, copy all at once:_
 
 ```bash
-$ cat >> $(brew --prefix)/etc/apache2/2.4/httpd.conf <<EOF
+$ cat >> $(brew --prefix)/etc/httpd/httpd.conf <<EOF
 # CUSTOM configuration -----------------------------------------------
 Include /Volumes/webdev/www/_apache/conf.d/*.conf
 Include /Volumes/webdev/www/_apache/vhosts/*.conf
@@ -178,7 +178,7 @@ EOF
 Finaly we can start Apache:
 
 ```bash
-$ brew services start httpd24
+$ brew services start httpd
 ```
 
 
