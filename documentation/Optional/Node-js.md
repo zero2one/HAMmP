@@ -1,11 +1,34 @@
 # Node.JS
 
+## NVM
+If you are working on multiple projects, multiple versions of node-js can be
+required. We use the Node Version Manager to overcome this problem.
 
-## NodeJS
-Install NodeJS Package Manager through Homebrew like so:
+Install using brew:
 
 ```bash
-$ brew install node
+$ brew install nvm
+```
+
+Create the home directory:
+
+```bash
+mkdir ~/.nvm
+```
+
+Add the following to ~/.bash_profile or your desired shell:
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+```
+
+
+## Install Node
+Install node using nvm:
+
+```bash
+$ nvm install node --lts
 ```
 
 
@@ -22,4 +45,3 @@ Install the Bower Package Manager through NPM like so:
 ```bash
 $ npm install -g bower
 ```
-
