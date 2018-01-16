@@ -29,40 +29,40 @@ function php_version {
     PHP=`php -r echo\(PHP_VERSION\)\; | grep -oE -m 1 "^[0-9]+\.[0-9]+\.[0-9]+"`
     PHP_AFTER=""
     len=${#PHP}
-    if [[ "$len" -lt 6 ]] 
+    if [[ "$len" -lt 6 ]]
       then PHP_AFTER=" "
     fi
 }
 
 ##
 # Function to switch from one to another version.
-# 
-# @param int 
+#
+# @param int
 #    The version number to switch to as in (53, 54, 55, 56)
 ##
 function php_switch {
   currentversion=$(php_version_number)
   newversion="$1"
-  
+
   # Check if we need to change versions.
   if [ "$currentversion" = "$newversion" ]; then
     echo "`cgreen Version\ is\ already\ $newversion`"
     return 0
   fi
-  
+
   # Check if the version is installed!
   brew list php$newversion 2> /dev/null > /dev/null
   if [ $? -eq 1 ]; then
     echo "`cred PHP\ version\ $newversion\ does\ not\ exist!`"
     return 1
   fi
-  
+
   # Switch to new version.
   brew services stop "php$currentversion"
   brew unlink "php$currentversion"
   brew link "php$newversion"
   brew services start "php$newversion"
-  
+
   # Update script variable.
   php_version
 }
@@ -70,7 +70,7 @@ function php_switch {
 ##
 # Configure PHP
 #
-# @param int 
+# @param int
 #   The php version number as int (53, 54, 55, 56)
 ##
 function php_config {
@@ -78,9 +78,9 @@ function php_config {
   if [ -z "$version" ]; then
     version=$(php_version_number)
   fi
-  
+
   configVersion="${version:0:1}.${version:1}"
-  
+
   vi $(brew --prefix)/etc/php/$configVersion/php.ini
 }
 
@@ -103,7 +103,7 @@ function menu {
 	echo "------------------------------------------------------"
 	echo "| `cwhite Manage\ Brew\ AMP\ Stack`                              |"
 	echo "|  Apache      :  `cgreen 11` Start    `cred 12` Stop    `cyellow 13` Restart  |"
-	echo "|  MySQL       :  `cgreen 21` Start    `cred 22` Stop    `cyellow 23` Restart  |"
+	echo "|  MariaDB     :  `cgreen 21` Start    `cred 22` Stop    `cyellow 23` Restart  |"
 	echo "|  Solr        :  `cgreen 41` Start    `cred 42` Stop    `cyellow 43` Restart  |"
 	echo "|  Mailcatcher :  `cgreen 61` Start    `cred 62` Open UI             |"
 	echo "|                                                    |"
@@ -113,9 +113,9 @@ function menu {
 	echo "|                                                    |"
 #	echo "| `cwhite PHP\ Configuration`                                  |"
 #	echo "|  `cblue 83` 5.3         `cblue 84` 5.4      `cblue 85` 5.5     `cblue 86` 5.6      |"
-#	echo "|                                                    |"	
+#	echo "|                                                    |"
 	echo "| `cwhite Other\ Configuration`                                |"
-	echo "|  `cblue 91` Apache      `cblue 92` PHP      `cblue 93` MySQL   `cblue 94` Postfix  |"   
+	echo "|  `cblue 91` Apache      `cblue 92` PHP      `cblue 93` MySQL   `cblue 94` Postfix  |"
 	echo "|  `cblue 99` /etc/hosts                                     |"
 	echo "|                                                    |"
 	echo "| `cblue 0` Quit                                             |"
@@ -127,7 +127,7 @@ function menu {
 function menu_execute {
 	SERVER=""
 	case $1 in
-	
+
 	# APACHE
 	11)
 		brew services start httpd
@@ -138,19 +138,19 @@ function menu_execute {
 	13)
 		brew services restart httpd
 		;;
-		
+
 	# MySQL
 	21)
-		brew services start mysql
+		brew services start mariadb
 		;;
 	22)
-		brew services stop mysql
+		brew services stop mariadb
 		;;
 	23)
-		brew services restart mysql
+		brew services restart mariadb
 		;;
-		
-  # TOMCAT (Solr)	
+
+  # TOMCAT (Solr)
 	41)
 		echo "Starting Solr"
 		solr start
@@ -163,8 +163,8 @@ function menu_execute {
 		echo "Restarting Solr"
 		solr restart
 		;;
-	  
-	  
+
+
 	# MAILCATCHER
 	61)
 		echo "Starting Mailcatcher"
@@ -172,18 +172,18 @@ function menu_execute {
 		mailcatcher
 		echo "  You now can see outgoing email at http://localhost:1080/"
 		;;
-		
+
 	62)
 		open "http://localhost:1080/"
 		;;
-		
-		
+
+
 	# SWITCH PHP VERSIONS
 	50)
 		php_version
 		echo "Current PHP version: $PHP"
 		;;
-		
+
 	5[3-6])
 		php_switch $1
 		;;
@@ -191,7 +191,7 @@ function menu_execute {
   7[0-9])
 		php_switch $1
 		;;
-		
+
 	# PHP config
 	8[3-6])
 	  php_config $1
@@ -202,7 +202,7 @@ function menu_execute {
 	91)
 		vi /usr/local/etc/httpd/httpd.conf
 		;;
-		
+
 	# PHP : Currently active config.
 	92)
 	  php_config
@@ -212,24 +212,24 @@ function menu_execute {
 	93)
 		vi $(brew --prefix)/etc/my.cnf
 		;;
-		
+
 	# MAIL config.
 	94)
 		sudo vi /etc/postfix/main.cf
 		;;
-		
+
 	# HOSTS
 	99)
 		sudo vi /etc/hosts
 		;;
-	
-	
-	
+
+
+
 	0)
 		echo "Bye"
 		QUIT=10
 		;;
-		
+
 	*)
 		echo "Illegal choise"
 		;;
@@ -240,7 +240,7 @@ function menu_execute {
 while [  $QUIT -lt 1 ]; do
 	menu
 	read MENU_CHOISE
-	echo 
+	echo
 	menu_execute $MENU_CHOISE
 	echo
 done
