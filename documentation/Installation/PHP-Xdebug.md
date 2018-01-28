@@ -17,6 +17,11 @@ $ sphp 70 && brew install php70-xdebug && sphp 70
 $ sphp 71 && brew install php71-xdebug && sphp 71
 ```
 
+### PHP 7.2
+```bash
+$ sphp 72 && brew install php72-xdebug && sphp 72
+```
+
 ##	Configure Xdebug
 Xdebug is by default not setup to allow debugging. We need to add it to the 
 configuration:
@@ -34,7 +39,7 @@ xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
 EOF
 ```
 
-Instead of [php-version] use one of the: 5.6, 7.0, 7.1 (,5.3, 5.4, 5.5), 
+Instead of [php-version] use one of the: 5.6, 7.0, 7.1, 7.2 (,5.3, 5.4, 5.5), 
 depending on your installed versions.
 
 
@@ -42,7 +47,7 @@ depending on your installed versions.
 Restart the PHP-FPM service so it loads the changed configuration.
 
 ```bash
-$ sphp 71
+$ sphp 72
 ```
 
 ##	Test
