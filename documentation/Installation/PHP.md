@@ -2,7 +2,7 @@
 
 ## Install multiple PHP version
 We want an environment where we can switch between the current active PHP 
-versions. This are 5.6.x, 7.0.x and 7.1.x.
+versions. This are 5.6.x, 7.0.x, 7.1.x and 7.2.x.
 
 This describes how to setup Apache with multiple PHP versions.
 You can optionally [install old PHP versions](PHP-Older-Versions.md).
@@ -17,6 +17,8 @@ $ brew install -v homebrew/php/php70
 $ brew unlink php70
 $ brew install -v homebrew/php/php71
 $ brew unlink php71
+$ brew install -v homebrew/php/php72
+$ brew unlink php72
 ```
 
 ## Configure PHP
@@ -52,6 +54,11 @@ $ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo syste
 #### PHP 7.1
 ```bash
 $ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php71-error.log'$'\n' $(brew --prefix)/etc/php/7.1/php.ini
+```
+
+#### PHP 7.2
+```bash
+$ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php71-error.log'$'\n' $(brew --prefix)/etc/php/7.2/php.ini
 ```
 
 
@@ -100,6 +107,13 @@ $ brew install -v php71-opcache
 $ /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.1/php.ini
 ```
 
+#### PHP 7.2
+```bash
+$ brew unlink php71 && brew link php72
+$ brew install -v php71-opcache
+$ /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.2/php.ini
+```
+
 
 
 ### Install Intl extension
@@ -107,7 +121,7 @@ Composer & Symfony2 recommends the installation of the PHP Intl extension:
 
 #### PHP 5.6
 ```bash
-$ brew unlink php71 && brew link php56
+$ brew unlink php72 && brew link php56
 $ brew install php56-intl
 ```
 
@@ -123,6 +137,12 @@ $ brew unlink php70 && brew link php71
 $ brew install php71-intl
 ```
 
+#### PHP 7.2
+```bash
+$ brew unlink php71 && brew link php72
+$ brew install php72-intl
+```
+
 
 
 ### Install ImageMagick extension
@@ -130,7 +150,7 @@ ImageMagick is a powerfull library to manipulate images.
 
 #### PHP 5.6
 ```bash
-$ brew unlink php71 && brew link php56
+$ brew unlink php72 && brew link php56
 $ brew install -s php56-imagick
 ```
 
@@ -146,21 +166,27 @@ $ brew unlink php70 && brew link php71
 $ brew install -s php71-imagick
 ```
 
+#### PHP 7.2
+```bash
+$ brew unlink php71 && brew link php72
+$ brew install -s php72-imagick
+```
+
 
 
 ## Restart Apache
 Finaly we can restart Apache:
 
 ```bash
-$ brew services stop httpd24
-$ brew services start httpd24
+$ brew services stop httpd
+$ brew services start httpd
 ```
 
 
 ## Start also PHP-FPM
 
 ```bash
-$ brew services start php71
+$ brew services start php72
 ```
 
 
@@ -179,6 +205,7 @@ a helper script to switch between the different PHP versions:
 $ sphp 56
 $ sphp 70
 $ sphp 71
+$ sphp 72
 ```
 
 
@@ -196,6 +223,7 @@ Edit the ini file of the proper PHP version:
 $ vi $(brew --prefix)/etc/php/5.6/php.ini
 $ vi $(brew --prefix)/etc/php/7.0/php.ini
 $ vi $(brew --prefix)/etc/php/7.1/php.ini
+$ vi $(brew --prefix)/etc/php/7.2/php.ini
 ```
 
 Uncomment and fill in the keychain paths:
