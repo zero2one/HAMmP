@@ -35,7 +35,7 @@ multiple PHP versions and optional extra's.
 * [BlackFire](Installation/PHP-Blackfire.md)
 * [Drush](Installation/Drupal-Drush.md)
 * [Drupal Code Standards](Installation/Drupal-Code-Standards.md)
-* [Mailcatcher](Installation/Mailcatcher.md)
+* [MailHog](Installation/MailHog.md)
 * [Management Script](Installation/Management-Script.md)
 
 

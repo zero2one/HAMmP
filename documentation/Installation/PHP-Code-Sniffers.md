@@ -105,5 +105,5 @@ $ composer global update drupal/coder
 
 
 ---
-* [Next : Drupal Code Stadards](./Drupal-Code-Standards.md)
+* [Next : Drupal Code Standards](./Drupal-Code-Standards.md)
 * [Overview](../README.md)
