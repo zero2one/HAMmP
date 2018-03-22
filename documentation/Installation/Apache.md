@@ -81,14 +81,6 @@ that you get by installing Homebrew. While we can use the format of brew
 install external-repo/formula, if an external formula relies on another 
 external formula, you have to use the brew tap command first.
 
-We need to tap homebrew-dupes because "homebrew-apache/httpd24" relies on 
-"homebrew-dupes/zlib":
-
-```bash
-$ brew tap homebrew/dupes
-```
-
-
 We'll install Apache 2.4 with the event MPM and set up PHP-FPM instead of 
 mod_php:
 
@@ -102,24 +94,7 @@ Install Apache 2.4 with the event MPM, and we'll use Homebrew's OpenSSL
 library since it's more up-to-date than OS X's:
 
 ```bash
-$ brew install -v homebrew/apache/httpd24 --with-brewed-openssl --with-mpm-event
-```
-
-In order to get Apache and PHP to communicate via PHP-FPM, we'll install the mod_fastcgi module:
-
-```bash
-$ brew install -v homebrew/apache/mod_fastcgi --with-homebrew-httpd24
-```
-
-If you encounter problems with pcre just follow the instructions: "_You must 
-`$ brew link pcre` before homebrew/apache/mod_fastcgi can be installed_".
-
-To prevent any potential problems with previous mod_fastcgi setups, let's 
-remove all references to the mod_fastcgi module (we'll re-add the new version
-later):
-
-```bash
-$ sed -i '' '/fastcgi_module/d' $(brew --prefix)/etc/httpd/httpd.conf
+$ brew install -v httpd --with-brewed-openssl --with-mpm-event
 ```
 
 
