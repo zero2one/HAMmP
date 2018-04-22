@@ -1,4 +1,5 @@
 # MariaDB
+
 MariaDB is a fork of the original MySQL database server and is 100% compatible.
 Made by the original developers of MySQL. Guaranteed to stay open source.
 
@@ -10,14 +11,15 @@ This means you can install it without having to build from source yourself.
 This saves time.
 
 ## Installation
+
 Install MariaDB with Homebrew:
 
 ```bash
-$ brew install mariadb
+brew install mariadb
 ```
 
-
 ## Configuration
+
 We change the default MariaDB configuration.
 
 This will configure MariaDB to allow for the maximum packet size, only 
@@ -30,7 +32,7 @@ The following is a single, multi-line command. Copy and paste the entire
 block at once:
 
 ```bash
-$ cat >> /usr/local/etc/my.cnf.d/mysqld.cnf <<'EOF'
+cat >> /usr/local/etc/my.cnf.d/mysqld.cnf <<'EOF'
 
 [mysqld] 
 skip-external-locking
@@ -51,7 +53,7 @@ EOF
 ```
 
 ```bash
-$ cat >> /usr/local/etc/my.cnf.d/innodb.cnf <<'EOF'
+cat >> /usr/local/etc/my.cnf.d/innodb.cnf <<'EOF'
 
 [innodb]
 innodb_file_per_table = 1
@@ -65,24 +67,24 @@ innodb_log_file_size = 32MB
 EOF
 ```
 
-
 ## Start MariaDB
+
 Start MariaDB with the Homebrew command. This will also register the service to
 MacOS launchd so it starts after the OS is booted:
 
 ```bash
-$ brew services start mariadb
+brew services start mariadb
 ```
 
-
 ##	Secure MariaDB
+
 By default, MariaDB's root user has an empty password from any connection. 
 
 You are advised to run mysql_secure_installation and at least set a password 
 for the root user:
 
 ```bash
-$ $(brew --prefix mariadb)/bin/mysql_secure_installation
+$(brew --prefix mariadb)/bin/mysql_secure_installation
 ```
 
 Answer the questions:
@@ -150,9 +152,7 @@ installation should now be secure.
 Thanks for using MariaDB!
 ```
 
-
-
-
 ---
+
 * [Next : Apache](./Apache.md)
 * [Overview](../README.md)

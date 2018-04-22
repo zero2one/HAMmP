@@ -18,11 +18,10 @@ customisation.
 This documentation describes how to setup a Apache-MySQL-PHP stack with 
 multiple PHP versions and optional extra's.
 
-
-
 ## Index
 
 ### Installation
+
 * [Preparation](Installation/Preparation.md)
 * [Homebrew](Installation/Homebrew.md)
 * [MariaDB](Installation/MariaDB.md)
@@ -30,7 +29,6 @@ multiple PHP versions and optional extra's.
 * [PHP](Installation/PHP.md)
 * [Xdebug](Installation/PHP-Xdebug.md)
 * [Composer](Installation/PHP-Composer.md)
-* [PHPUnit](Installation/PHP-PHPUnit.md)
 * [PHP Code Sniffers](Installation/PHP-Code-Sniffers.md)
 * [BlackFire](Installation/PHP-Blackfire.md)
 * [Drush](Installation/Drupal-Drush.md)
@@ -38,8 +36,8 @@ multiple PHP versions and optional extra's.
 * [MailHog](Installation/MailHog.md)
 * [Management Script](Installation/Management-Script.md)
 
-
 ### Optional extra's
+
 * [Drupal Tools](Optional/Drupal-Tools.md)
 * [Ruby](Optional/Ruby.md)
 * [Node JS](Optional/Node-js.md)
@@ -47,29 +45,27 @@ multiple PHP versions and optional extra's.
 * [Tika](Optional/Tika.md)
 * [Redis](Optional/Redis.md)
 
-
 ### How to's
+
 * [Add Apache vhost](HowTo/Add-Apache-Vhost.md)
 * [Add Solr core](HowTo/Apache-Solr-Add-Core.md)
 * [MySQL Back-up](HowTo/MySQL-Backup.md) : Take a mysqldump with each database 
   in its own SQL File
 
-
 ### Troubleshooting
+
 * [Homebrew](Troubleshooting/Homebrew.md)
 * [MySQL](Troubleshooting/MySQL.md)
 * [Apache](Troubleshooting/Apache.md)
 * [PHP](Troubleshooting/PHP.md)
 * [Too many open files](Troubleshooting/To-Many-Open-Files.md)
 
-
-
 ## Resources
 
 This install guide is based on:
 
 * [Local Development Environment: Apache, PHP, and MySQL with Homebrew](https://echo.co/blog/os-x-1010-yosemite-local-development-environment-apache-php-and-mysql-homebrew)
+* [macOS 10.13 High Sierra Apache Setup: Multiple PHP Versions](https://getgrav.org/blog/macos-sierra-apache-multiple-php-versions)
 * [Apache Setup: Multiple PHP Versions](http://getgrav.org/blog/mac-os-x-apache-setup-multiple-php-versions)
-
 
 * This project is [hosted on GitHub](https://github.com/zero2one/HAMmP).

@@ -1,6 +1,7 @@
 # Java
+
 Install Java using homebrew:
 
 ```bash
-$ brew cask install java
+brew cask install java
 ```

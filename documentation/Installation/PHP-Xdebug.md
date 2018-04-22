@@ -1,33 +1,47 @@
 # Xdebug
 
+Xdebug is an extension for PHP to assist with debugging and development. It
+contains a single step debugger to use with IDEs; it upgrades PHP's var_dump()
+function; it adds stack traces for Notices, Warnings, Errors and Exceptions; it
+features functionality for recording every function call and variable assignment
+to disk; it contains a profiler; and it provides code coverage functionality for
+use with PHPUnit.
+
+More info see the [Xdebug website](https://xdebug.org/).
+
 ## Install Xdebug
 
 ### PHP 5.6
+
 ```bash
-$ sphp 56 && brew install php56-xdebug && sphp 56
+sphp 5.6 && pecl install xdebug-2.5.5
 ```
 
 ### PHP 7.0
+
 ```bash
-$ sphp 70 && brew install php70-xdebug && sphp 70
+sphp 7.0 && pecl install xdebug
 ```
 
 ### PHP 7.1
+
 ```bash
-$ sphp 71 && brew install php71-xdebug && sphp 71
+sphp 7.1 && pecl install xdebug
 ```
 
 ### PHP 7.2
+
 ```bash
-$ sphp 72 && brew install php72-xdebug && sphp 72
+sphp 7.2 && pecl install xdebug
 ```
 
 ##	Configure Xdebug
+
 Xdebug is by default not setup to allow debugging. We need to add it to the 
 configuration:
 
 ```bash
-$ cat >> /usr/local/etc/php/[php-version]/conf.d/ext-xdebug.ini <<EOF
+$ cat >> $(brew --prefix)/etc/php/[php-version]/conf.d/ext-xdebug.ini <<EOF
  
 xdebug.remote_enable=1
 xdebug.remote_port=10000
@@ -39,23 +53,26 @@ xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
 EOF
 ```
 
-Instead of [php-version] use one of the: 5.6, 7.0, 7.1, 7.2 (,5.3, 5.4, 5.5), 
-depending on your installed versions.
+Instead of [php-version] use one of the: 5.6, 7.0, 7.1, 7.2 depending on your
+installed versions.
 
+> Note : we change the default port 9000 to 10000 since 9000 is already in use
+> by PHP-FPM.
 
 ## Restart PHP-FPM
+
 Restart the PHP-FPM service so it loads the changed configuration.
 
 ```bash
-$ sphp 72
+sphp 7.2
 ```
 
 ##	Test
+
 You should also check [http://localhost/phpinfo.php](http://localhost/phpinfo.php) 
 to ensure that Xdebug information is displayed.
 
 ![PHP Info](./media/Xdebug-1-phpinfo.png)
-
 
 ## Configure PhpStorm
 
@@ -79,19 +96,21 @@ Change the Xdebug configuration:
 
 
 ## Debug in command line (cli)
+
 Sometimes you want to debug php scripts in PHPStorm while running in command 
 line (drush, Symfony command, ...).
 
 You can enable & disable debugging using bash aliases.
 
 ###	Add CLI aliases
+
 Add 2 aliases: one to enable and one to disable PHP debugging for Bash Scripts
 using Xdebug and PhpStorm:
 
 _Multiline command, copy all at once:_
 
 ```bash
-$ cat >> ~/.bash_profile <<EOF
+cat >> ~/.bash_profile <<EOF
 
 # PHP CLI XDEBUG -------------------------------------
 alias phpdebug-on="export XDEBUG_CONFIG='idekey=PHPSTORM'"
@@ -104,36 +123,37 @@ Resource bash profile file to be able to use it immediately without restarting
 terminal.
 
 ```bash
-$ source ~/.bash_profile
+source ~/.bash_profile
 ```
 
 ### Usage
+
 Enable the remote debugger listener in PHPStorm.
 
 Open a terminal screen and run:
 
 ```bash
-$ phpdebug-on
+phpdebug-on
 ```
 
 Run the PHP script in the CLI, PHPStorm debug window will open.
 
 ###	Stop debugging
+
 Close the CLI window or run:
 
 ```bash
-$ phpdebug-off
+phpdebug-off
 ```
 
 > *Note* : You need to start the debugging for each new terminal window, the 
 > debug status is kept per terminal session.
 
-
 ## Install Chrome extension
-Install the Chrome extension to start/stop debugging sessions from within the 
-browser:
 
-https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc
+Install the
+[xdebug-helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc)
+Chrome extension to start/stop debugging sessions from within the browser.
 
 Configure the extension so it uses the proper IDE:
 
@@ -145,20 +165,21 @@ Configure the extension so it uses the proper IDE:
 
 
 ## Xdebug output toggler
-There is an optional chrome extension "xDebug output toggler" to toggle 
-show/hide xDebug output in the browser. 
 
-This can be handy to temporary hide this information (or errors) from the screen.
+There is an optional chrome extension
+"[xDebug output toggler](https://chrome.google.com/webstore/detail/xdebug-output-toggler/ekjpdpmelhdapkilemcamlpcocekgbed?hl=en-GB)"
+to toggle show/hide xDebug output in the browser. 
+
+This can be handy to temporary hide this information (or errors) from the
+screen.
 
 ![Chrome Xdebug output toggler](./media/Xdebug-4-xdebug-output-toggler.png)
 
-
 ## Extensions for other browsers
+
 * [See extensions for other browsers](https://confluence.jetbrains.com/display/PhpStorm/Browser+Debugging+Extensions).
 
-
-
-
 ---
+
 * [Next : Composer](PHP-Composer.md)
 * [Overview](../README.md)

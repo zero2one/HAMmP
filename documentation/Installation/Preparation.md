@@ -35,7 +35,7 @@ Run the following command to only install the Xcode essentials including the
 Command line tools:
 
 ```bash
-$ xcode-select --install
+xcode-select --install
 ```
 
 > **Note** : Installing Xcode essentials is done trough the Software Updates

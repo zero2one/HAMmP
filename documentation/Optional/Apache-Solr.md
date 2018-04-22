@@ -1,10 +1,11 @@
 # Apache Solr
 
 ## Install Apache Solr
+
 Installing Solr using Homebrew is simple:
 
 ```bash
-$ brew install solr
+brew install solr
 ```
 
 You need to start/stop Solr by default manually:

@@ -1,4 +1,5 @@
 # Drush
+
 This describes how to setup Drush on a Mac.
 
 Drush is a command line shell and Unix scripting interface for Drupal, a 
@@ -7,59 +8,60 @@ spend some of our working hours hacking away at the command prompt.
 
 More info: https://github.com/drush-ops/drush
 
-
 ## Requirements
+
 * [Composer](PHP-Composer.md) : 
   We are installing Drush trough composer, make sure that Composer is installed 
   globally.
 * [wget](./Homebrew.md#Wget) : Drush uses wget to get packages from the 
   internet.
 
-
 ## Installation
+
 Install Drush (8) globally using composer:
 
 ```bash
-$ composer global require drush/drush
+composer global require drush/drush
 ```
 
 Drush is installed!
 
-
 ## Commands
+
 Overview of available commands:
 
 ```bash
-$ drush help
+drush help
 ```
 
-
 ## Update Drush
+
 We got Drush from GitHub we can upgrade it anytime to the latest version:
 
 ```bash
-$ composer global update
+composer global update
 ```
 
-
 ## Local drush configuration
+
 You can set or override drush configuration.
 Do this by creating a .drush folder within your home folder (if it does not 
 already exists):
 
 ```bash
-$ mkdir ~/.drush
+mkdir ~/.drush
 ```
 
 Create (or edit) the drush config file:
 
 ```bash
-$ vi ~/.drush/drushrc.php
+vi ~/.drush/drushrc.php
 ```
 
 Add following config (as you desire):
 
 ### Prevent SVN related errors while using drush dl command or using drush make
+
 In some installations, SVN error notices are shown while downloading modules or 
 themes ("sh: line 1: 11912 Trace/BPT trap: 5       svn info…").
 
@@ -74,6 +76,7 @@ putenv("DYLD_LIBRARY_PATH=''");
 ```
 
 ### Set the environment variable
+
 You can set an environment variable for your vhosts. Drush is run trough cli 
 and does not know about the vhost settings.
 
@@ -85,6 +88,7 @@ $_SERVER['APPLICATION_ENV'] = 'development';
 ```
 
 ### Exclude the data of certain tables during drush sql-dump commands
+
 When you run drush sql-dump commands, by default all tables and their data are 
 dumped. This includes the data in the cache tables.
 
@@ -130,19 +134,20 @@ $options['structure-tables-key'] = 'common';
 ```
 
 ## Useful extra commands
+
 Add extra commands that are handy during development:
 
 ### Drush language
+
 Commands to switch and manage the languages of a Drupal installation.
 See [drush_language on d.o.](https://www.drupal.org/project/drush_language).
 
 ```bash
-$ cd ~
-$ drush dl drush_language
+cd ~
+drush dl drush_language
 ```
 
-
-
 ---
-* [Next : Drush](PHP-PHPUnit.md)
+
+* [Next : PHP Code Sniffers](./PHP-Code-Sniffers.md)
 * [Overview](../README.md)

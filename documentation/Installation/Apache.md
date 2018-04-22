@@ -1,20 +1,21 @@
 # Apache
 
 ##	Prepare directory
+
 We are using the [newly created partition](./Preparation.md#create-case-sensitive-partition)
 as our web root.
 
 Create a www folder on the new partition:
 
 ```bash
-$ mkdir -p /Volumes/Webdev/www
+mkdir -p /Volumes/Webdev/www
 ```
 
 Clone the folder structure, configuration & scripts from GitHub in the new 
 directory:
 
 ```bash
-$ git clone https://github.com/zero2one/HAMmP.git /Volumes/Webdev/www/_apache
+git clone https://github.com/zero2one/HAMmP.git /Volumes/Webdev/www/_apache
 ```
 
 You should now have a directory called /Volumes/Webdev/www/_apache
@@ -23,8 +24,8 @@ You should now have a directory called /Volumes/Webdev/www/_apache
 > the proper location is very important for the rest of the installation 
 > process!
 
-
 ## Add the HaMmP bin directory to $PATH
+
 Add the HAmMP bin directory to your `$PATH` environment variable so we can use 
 the included bash scripts.
 
@@ -34,7 +35,7 @@ directory. If not create a new one!
 _Multiline command, copy all at once:_
 
 ```bash
-$ cat >> ~/.bash_profile <<EOF
+cat >> ~/.bash_profile <<EOF
 #!/bin/bash
 
 EOF
@@ -45,7 +46,7 @@ Add the bin directory to `$PATH`:
 _Multiline command, copy all at once:_
 
 ```bash
-$ cat >> ~/.bash_profile <<EOF
+cat >> ~/.bash_profile <<EOF
 
 # HAMmP -----------------------------------------------
 PATH="/Volumes/Webdev/www/_apache/bin:$PATH"
@@ -65,17 +66,18 @@ Make sure that the scripts can be executed:
 $ chmod +x /Volumes/Webdev/www/_apache/bin/*
 ```
 
-
 ##	Disable build-in Apache
+
 Start by stopping the built-in Apache, if it's running, and prevent it from 
 starting on boot. This is one of very few times you'll need to use sudo:
 
 ```bash
-$ sudo launchctl unload /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
+sudo apachectl stop
+sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
 ```
 
-
 ## Install Apache
+
 The formula for building Apache is not in the default Homebrew repository 
 that you get by installing Homebrew. While we can use the format of brew 
 install external-repo/formula, if an external formula relies on another 
@@ -94,18 +96,17 @@ Install Apache 2.4 with the event MPM, and we'll use Homebrew's OpenSSL
 library since it's more up-to-date than OS X's:
 
 ```bash
-$ brew install -v httpd --with-brewed-openssl --with-mpm-event
+brew install -v httpd --with-brewed-openssl --with-mpm-event
 ```
 
-
-
 ### Add hostname to Apache configuration
+
 Add the hostname to the Apache configuration:
 
 _Multiline command, copy all at once:_
 
 ```bash
-$ export SERVERNAME=$(hostname); cat > /Volumes/webdev/www/_apache/conf.d/hostname.conf <<EOF
+export SERVERNAME=$(hostname); cat > /Volumes/webdev/www/_apache/conf.d/hostname.conf <<EOF
 
 HostnameLookups Off
 ServerName $SERVERNAME
@@ -113,36 +114,35 @@ ServerName $SERVERNAME
 EOF
 ```
 
-
-
 ## Create SSL certificate
+
 We create 1 certificate that we use for all the vhosts that need an SSL 
 configuration:
 
-_Multiline command, copy all at once:_
+_Multiline command, copy all at once, Replace the [variables] with your actual
+values:_
 
 ```bash
-$ openssl req \
+openssl req \
   -new \
   -newkey rsa:2048 \
   -days 3650 \
   -nodes \
   -x509 \
-  -subj "/C=BE/ST=Flanders/L=Heverlee/O=Amplexor/OU=$(whoami)/CN=*.dev" \
+  -subj "/C=BE/ST=[STATE]/L=[CITY]/O=[ORGANISATION]/OU=$(whoami)/CN=*.test" \
   -keyout /Volumes/webdev/www/_apache/include/ssl/private.key \
   -out /Volumes/webdev/www/_apache/include/ssl/selfsigned.crt
 ```
 
-
-
 ## Add the custom configuration to Apache
+
 We extend the Apache configuration with custom files. We need to add their 
 location to Apache so they are loaded on startup:
 
 _Multiline command, copy all at once:_
 
 ```bash
-$ cat >> $(brew --prefix)/etc/httpd/httpd.conf <<EOF
+cat >> $(brew --prefix)/etc/httpd/httpd.conf <<EOF
 # CUSTOM configuration -----------------------------------------------
 Include /Volumes/webdev/www/_apache/conf.d/*.conf
 Include /Volumes/webdev/www/_apache/vhosts/*.conf
@@ -150,21 +150,22 @@ EOF
 ```
 
 ## Start Apache
-Finaly we can start Apache:
+
+Finaly we can restart Apache:
 
 ```bash
-$ brew services start httpd
+brew services restart httpd
 ```
 
-
 ## Test
+
 You should now be able to access your local server:
 
-*	http: http://localhost:8080
-*	https: https://localhost:8443
-
+* http: `http://localhost:8080`
+* https: `https://localhost:8443`
 
 ## Port fowarding
+
 You may notice that httpd.conf is running Apache on ports 8080 and 8443.
 
 Manually adding ":8080" each time you're referencing your dev sites is no fun, 
@@ -180,7 +181,7 @@ The following command will create the file
 since it needs elevated privileges:
 
 ```bash
-$ sudo bash -c 'export TAB=$'"'"'\t'"'"'
+sudo bash -c 'export TAB=$'"'"'\t'"'"'
 cat > /Library/LaunchDaemons/co.echo.httpdfwd.plist <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -208,16 +209,15 @@ forwards, but we can load it manually now so we don't need to log out and back
 in:
 
 ```bash
-$ sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
+sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
 ```
 
 Now we can access the localhost on the default ports:
 
-*	http: http://localhost
-*	https: https://localhost
-
-
+*	http: `http://localhost`
+*	https: `https://localhost`
 
 ---
+
 * [Next : PHP](./PHP.md)
 * [Overview](../README.md)
