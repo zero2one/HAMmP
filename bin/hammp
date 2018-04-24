@@ -41,27 +41,10 @@ function php_version {
 #    The version number to switch to as in (53, 54, 55, 56)
 ##
 function php_switch {
-  currentversion=$(php_version_number)
   newversion="$1"
+  newversion="${newversion:0:1}.${newversion:1:1}"
 
-  # Check if we need to change versions.
-  if [ "$currentversion" = "$newversion" ]; then
-    echo "`cgreen Version\ is\ already\ $newversion`"
-    return 0
-  fi
-
-  # Check if the version is installed!
-  brew list php$newversion 2> /dev/null > /dev/null
-  if [ $? -eq 1 ]; then
-    echo "`cred PHP\ version\ $newversion\ does\ not\ exist!`"
-    return 1
-  fi
-
-  # Switch to new version.
-  brew services stop "php$currentversion"
-  brew unlink "php$currentversion"
-  brew link "php$newversion"
-  brew services start "php$newversion"
+  sphp "$newversion"
 
   # Update script variable.
   php_version
@@ -108,12 +91,8 @@ function menu {
 	echo "|  Mailcatcher :  `cgreen 61` Start    `cred 62` Open UI             |"
 	echo "|                                                    |"
 	echo "| `cwhite Switch\ PHP\ version` (Current $PHP)$PHP_AFTER                |"
-	echo "|  `cblue 53` 5.3         `cblue 54` 5.4      `cblue 55` 5.5     `cblue 56` 5.6      |"
-	echo "|  `cblue 70` 7.0         `cblue 71` 7.1                             |"
+	echo "|  `cblue 56` 5.6         `cblue 70` 7.0      `cblue 71` 7.1     `cblue 72` 7.2      |"
 	echo "|                                                    |"
-#	echo "| `cwhite PHP\ Configuration`                                  |"
-#	echo "|  `cblue 83` 5.3         `cblue 84` 5.4      `cblue 85` 5.5     `cblue 86` 5.6      |"
-#	echo "|                                                    |"
 	echo "| `cwhite Other\ Configuration`                                |"
 	echo "|  `cblue 91` Apache      `cblue 92` PHP      `cblue 93` MySQL   `cblue 94` Postfix  |"
 	echo "|  `cblue 99` /etc/hosts                                     |"
@@ -184,11 +163,11 @@ function menu_execute {
 		echo "Current PHP version: $PHP"
 		;;
 
-	5[3-6])
+	56)
 		php_switch $1
 		;;
 
-  7[0-9])
+    7[0-9])
 		php_switch $1
 		;;
 
