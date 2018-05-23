@@ -105,7 +105,7 @@ to serve PHP scripts using PHP-FPM. We only need to start the PHP-FPM service:
 brew services start php@5.6
 ```
 
-The config is located at `/Volumes/Webdev/www/_apache/conf.d/php-fpm.conf`.
+The config is located at `/Volumes/webdev/www/_apache/conf.d/php-fpm.conf`.
 
 ## Test
 
@@ -116,7 +116,7 @@ You should now be able to run PHP scripts:
 
 ## Switch between PHP versions
 
-The `/Volumes/Webdev/www/_apache/bin` directory of the HAMmP repository contains
+The `/Volumes/webdev/www/_apache/bin` directory of the HAMmP repository contains
 a helper script to switch between the different PHP versions.
 
 Run the command with the PHP version you want to enable:
