@@ -8,17 +8,17 @@ as our web root.
 Create a www folder on the new partition:
 
 ```bash
-mkdir -p /Volumes/Webdev/www
+mkdir -p /Volumes/webdev/www
 ```
 
 Clone the folder structure, configuration & scripts from GitHub in the new 
 directory:
 
 ```bash
-git clone https://github.com/zero2one/HAMmP.git /Volumes/Webdev/www/_apache
+git clone https://github.com/zero2one/HAMmP.git /Volumes/webdev/www/_apache
 ```
 
-You should now have a directory called /Volumes/Webdev/www/_apache
+You should now have a directory called /Volumes/webdev/www/_apache
 
 > **Note** : Cloning the default folder structure, configuration & scripts to 
 > the proper location is very important for the rest of the installation 
@@ -49,7 +49,7 @@ _Multiline command, copy all at once:_
 cat >> ~/.bash_profile <<EOF
 
 # HAMmP -----------------------------------------------
-PATH="/Volumes/Webdev/www/_apache/bin:$PATH"
+PATH="/Volumes/webdev/www/_apache/bin:$PATH"
 
 EOF
 ```
@@ -63,7 +63,7 @@ source ~/.bash_profile
 Make sure that the scripts can be executed:
 
 ```bash
-$ chmod +x /Volumes/Webdev/www/_apache/bin/*
+$ chmod +x /Volumes/webdev/www/_apache/bin/*
 ```
 
 ##	Disable build-in Apache
