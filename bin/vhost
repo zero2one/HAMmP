@@ -1,0 +1,207 @@
+#!/bin/bash
+# Based on https://github.com/RoverWire/virtualhost
+
+function display_usage {
+  echo "This script can be used to create or delete a vhost." 
+  echo -e "\nUsage:\nvhost create|delete domain rootdir\n"
+}
+
+function main {
+  ### Set default parameters
+  action=$1
+  domain=$2
+  rootDir=$3
+  owner=$(who am i | awk '{print $1}')
+  apacheUser=$(ps -ef | egrep '(httpd|apache2|apache)' | grep -v root | head -n1 | awk '{print $1}')
+  email='webmaster@localhost'
+  vhostConfDir='/Volumes/webdev/.httpd/vhosts/'
+  userDir='/Volumes/Webdev/vhosts/'
+  vhostFile=$vhostConfDir$domain.conf
+
+  # We need root to edit the hosts file
+  if [ "$(whoami)" != 'root' ];
+    then
+      echo $"You have no permission to run $0 as non-root user. Use sudo"
+      exit 1;
+  fi
+
+  if [ "$action" != 'create' ] && [ "$action" != 'delete' ]
+    then
+      echo $"You need to prompt for action (create or delete) -- Lower-case only"
+      exit 1;
+  fi
+
+  if [ "$rootDir" == "" ]; then
+    rootDir=${domain//./}
+  fi
+
+  ### if root dir starts with '/', don't use /var/www as default starting point
+  if [[ "$rootDir" =~ ^/ ]]; then
+    userDir=''
+  fi
+
+  rootDir=$userDir$rootDir
+
+  if [ "$action" == 'create' ]
+    then
+      ### check if domain already exists
+      if [ -e $vhostFile ]; then
+        echo -e $"This domain already exists.\nPlease Try Another one"
+        exit;
+      fi
+
+      ### check if directory exists or not
+      if ! [ -d $rootDir ]; then
+        ### create the directory
+        mkdir -p $rootDir
+        ### give permission to root dir
+        chmod 755 $rootDir
+        ### write test file in the new domain dir
+        if ! echo "<?php echo phpinfo(); ?>" > $rootDir/phpinfo.php
+        then
+          echo $"ERROR: Not able to write in file $rootDir/phpinfo.php. Please check permissions"
+          exit;
+        else
+          echo $"Added content to $rootDir/phpinfo.php"
+        fi
+      fi
+
+      ### create virtual host rules file
+      if ! echo "
+      <VirtualHost *:8080>
+        ServerName $domain
+        ServerAdmin $email
+
+        DocumentRoot $rootDir
+
+        <Directory $rootDir>
+          Options Includes FollowSymLinks ExecCGI
+          
+          AllowOverride All
+          <IfModule authz_host_module>
+            Require all granted
+          </IfModule>
+          <IfModule access_compat_module>
+            Order allow,deny
+            Allow from all
+          </IfModule>
+        </Directory>
+
+        ErrorLog /Volumes/webdev/www/_apache/log/$domain-error.log
+        LogLevel error
+        CustomLog /Volumes/webdev/www/_apache/log/$domain-access.log combined
+      </VirtualHost>" > $vhostFile
+      then
+        echo -e $"There is an ERROR creating $domain http file"
+        exit;
+      else
+        chown $owner $vhostFile
+        echo -e $"\nNew http Virtual Host Created\n"
+      fi
+
+      ### create virtual host rules file
+      if ! echo "
+      <VirtualHost *:8443>
+        ServerName $domain
+        ServerAdmin $email
+
+        DocumentRoot $rootDir
+
+        <Directory $rootDir>
+          Options Includes FollowSymLinks ExecCGI
+          
+          AllowOverride All
+          <IfModule authz_host_module>
+            Require all granted
+          </IfModule>
+          <IfModule access_compat_module>
+            Order allow,deny
+            Allow from all
+          </IfModule>
+        </Directory>
+  
+        # Include the shared SSL configuration.
+        Include "/Volumes/webdev/www/_apache/include/ssl/ssl-shared-cert.inc"
+
+        ErrorLog /Volumes/webdev/www/_apache/log/$domain-https-error.log
+        LogLevel error
+        CustomLog /Volumes/webdev/www/_apache/log/$domain-https-access.log combined
+      </VirtualHost>" > $vhostFile
+      then
+        echo -e $"There is an ERROR creating $domain http file"
+        exit;
+      else
+        chown $owner $vhostFile
+        echo -e $"\nNew http Virtual Host Created\n"
+      fi
+
+      ### Add domain in /etc/hosts
+      if ! echo "127.0.0.1  $domain" >> /etc/hosts
+      then
+        echo $"ERROR: Not able to write in /etc/hosts"
+        exit;
+      else
+        echo -e $"Host added to /etc/hosts file \n"
+      fi
+
+      chown -R $owner $rootDir
+
+      ### restart Apache
+      sudo -u $owner brew services restart httpd
+
+      ### show the finished message
+      echo -e $"Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootDir"
+      exit;
+    else
+      ### check whether domain already exists
+      if ! [ -e $vhostFile ]; then
+        echo -e $"This domain does not exist.\nPlease try another one"
+        exit;
+      else
+        ### Delete domain in /etc/hosts
+        newhost=${domain//./\\.}
+        sed -i "/$newhost/d" /etc/hosts
+
+        ### restart Apache
+        sudo -u $owner brew services restart httpd
+
+        ### Delete virtual host rules files
+        rm $vhostFile
+      fi
+
+      ### check if directory exists or not
+      if [ -d $rootDir ]; then
+        echo -e $"Delete host root directory ? (y/n)"
+        read deldir
+
+        if [ "$deldir" == 'y' -o "$deldir" == 'Y' ]; then
+          ### Delete the directory
+          rm -rf $rootDir
+          echo -e $"Directory deleted"
+        else
+          echo -e $"Host directory conserved"
+        fi
+      else
+        echo -e $"Host directory not found. Ignored"
+      fi
+
+      ### show the finished message
+      echo -e $"Complete!\nYou just removed Virtual Host $domain"
+      exit 0;
+  fi
+}
+
+if [  "$#" -lt 2 ]
+then
+  display_usage
+  exit 1
+fi
+
+# check whether user had supplied -h or --help . If yes display usage 
+if [[ ( $@ == "--help") ||  $@ == "-h" ]]
+then
+  display_usage
+  exit 0
+fi
+
+main $@
