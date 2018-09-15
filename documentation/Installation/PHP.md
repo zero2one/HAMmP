@@ -177,68 +177,6 @@ sphp 7.1 && pecl install imagick
 sphp 7.2 && pecl install imagick
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Install OpCache
-
-The optional Opcache extension will speed up your PHP environment 
-dramatically, so let's install it. Then, we'll bump up the opcache memory limit:
-
-#### PHP 5.6
-
-```bash
-brew link php56
-brew install -v php56-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.6/php.ini
-```
-
-#### PHP 7.0
-
-```bash
-brew unlink php56 && brew link php70
-brew install -v php70-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.0/php.ini
-```
-
-#### PHP 7.1
-
-```bash
-brew unlink php70 && brew link php71
-brew install -v php71-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.1/php.ini
-```
-
-#### PHP 7.2
-
-```bash
-brew unlink php71 && brew link php72
-brew install -v php72-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.2/php.ini
-```
-
 ## Certificate files
 
 If you want to access URI (eg. services) trough PHP that are hosted on self 
