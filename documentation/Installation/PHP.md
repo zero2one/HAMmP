@@ -6,7 +6,6 @@ We want an environment where we can switch between the current active PHP
 versions. This are 5.6.x, 7.0.x, 7.1.x and 7.2.x.
 
 This describes how to setup Apache with multiple PHP versions.
-You can optionally [install old PHP versions](PHP-Older-Versions.md).
 
 To do so we install PHP 5.6 > 7.2. Feel free to leave out the versions you 
 don't need.
