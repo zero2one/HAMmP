@@ -23,7 +23,7 @@ brew install wget
 pkg-config is required to install some PHP extensions. Install it up-front:
 
 ```bash
-homebrew install pkg-config
+brew install pkg-config
 ```
 
 ## Update GIT to latest version

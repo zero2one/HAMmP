@@ -3,7 +3,7 @@
 This repository contains a basic file structure and helper scripts to setup and
 maintain a local AMP stack on Mac OS X.
 
-This setup is for OS X 10.10 Yosemite.
+This setup is for OS X 10.13 High Sierra.
 
 We are using Homebrew to setup the stack.
 

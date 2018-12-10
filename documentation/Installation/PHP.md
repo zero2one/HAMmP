@@ -6,7 +6,6 @@ We want an environment where we can switch between the current active PHP
 versions. This are 5.6.x, 7.0.x, 7.1.x and 7.2.x.
 
 This describes how to setup Apache with multiple PHP versions.
-You can optionally [install old PHP versions](PHP-Older-Versions.md).
 
 To do so we install PHP 5.6 > 7.2. Feel free to leave out the versions you 
 don't need.
@@ -105,7 +104,7 @@ to serve PHP scripts using PHP-FPM. We only need to start the PHP-FPM service:
 brew services start php@5.6
 ```
 
-The config is located at `/Volumes/Webdev/www/_apache/conf.d/php-fpm.conf`.
+The config is located at `/Volumes/webdev/www/_apache/conf.d/php-fpm.conf`.
 
 ## Test
 
@@ -116,7 +115,7 @@ You should now be able to run PHP scripts:
 
 ## Switch between PHP versions
 
-The `/Volumes/Webdev/www/_apache/bin` directory of the HAMmP repository contains
+The `/Volumes/webdev/www/_apache/bin` directory of the HAMmP repository contains
 a helper script to switch between the different PHP versions.
 
 Run the command with the PHP version you want to enable:
@@ -175,68 +174,6 @@ sphp 7.1 && pecl install imagick
 
 ```bash
 sphp 7.2 && pecl install imagick
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Install OpCache
-
-The optional Opcache extension will speed up your PHP environment 
-dramatically, so let's install it. Then, we'll bump up the opcache memory limit:
-
-#### PHP 5.6
-
-```bash
-brew link php56
-brew install -v php56-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.6/php.ini
-```
-
-#### PHP 7.0
-
-```bash
-brew unlink php56 && brew link php70
-brew install -v php70-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.0/php.ini
-```
-
-#### PHP 7.1
-
-```bash
-brew unlink php70 && brew link php71
-brew install -v php71-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.1/php.ini
-```
-
-#### PHP 7.2
-
-```bash
-brew unlink php71 && brew link php72
-brew install -v php71-opcache
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/7.2/php.ini
 ```
 
 ## Certificate files

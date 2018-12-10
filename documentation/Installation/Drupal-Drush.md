@@ -18,13 +18,25 @@ More info: https://github.com/drush-ops/drush
 
 ## Installation
 
-Install Drush (8) globally using composer:
+You could install Drush (8) globally using Composer:
 
 ```bash
 composer global require drush/drush
 ```
 
-Drush is installed!
+But in order to avoid dependency issues, it is best to require Drush on a per-project basis via Composer:
+
+```bash
+composer require drush/drush
+```
+
+However, it is inconvenient to type `vendor/bin/drush` in order to execute Drush commands.  By installing the [drush launcher](https://github.com/drush-ops/drush-launcher) globally on your local machine, you can simply type `drush` on the command line, and the launcher will find and execute the project specific version of drush located in your project's `vendor` directory:
+
+```bash
+curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
+chmod +x drush.phar
+sudo mv drush.phar /usr/local/bin/drush
+```
 
 ## Commands
 
