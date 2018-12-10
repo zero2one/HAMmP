@@ -3,18 +3,18 @@
 ## Install multiple PHP version
 
 We want an environment where we can switch between the current active PHP 
-versions. This are 5.6.x, 7.0.x, 7.1.x and 7.2.x.
+versions. This are 5.6.x, 7.1.x, 7.2.x and 7.3.x.
 
 This describes how to setup Apache with multiple PHP versions.
 
-To do so we install PHP 5.6 > 7.2. Feel free to leave out the versions you 
+To do so we install PHP 5.6 > 7.3. Feel free to leave out the versions you 
 don't need.
 
 ```bash
 brew install php@5.6
-brew install php@7.0
 brew install php@7.1
 brew install php@7.2
+brew install php@7.3
 ```
 
 ## Configure PHP
@@ -43,12 +43,6 @@ We need to update the config for each PHP version:
 sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php56-error.log'$'\n' $(brew --prefix)/etc/php/5.6/php.ini
 ```
 
-#### PHP 7.0
-
-```bash
-sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php70-error.log'$'\n' $(brew --prefix)/etc/php/7.0/php.ini
-```
-
 #### PHP 7.1
 
 ```bash
@@ -61,11 +55,17 @@ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systems
 sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php71-error.log'$'\n' $(brew --prefix)/etc/php/7.2/php.ini
 ```
 
+#### PHP 7.3
+
+```bash
+sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php71-error.log'$'\n' $(brew --prefix)/etc/php/7.3/php.ini
+```
+
 ## Switch back to PHP 5.6
 Switch pack to PHP 5.6 (or the lowest version you have installed).
 
 ```bash
-brew unlink php@7.2 && brew link --force --overwrite php@5.6
+brew unlink php@7.3 && brew link --force --overwrite php@5.6
 ```
 
 Close all terminal windows and open a new one. This will open a new session with
@@ -122,17 +122,15 @@ Run the command with the PHP version you want to enable:
 
 ```
 sphp 5.6
-sphp 7.0
 sphp 7.1
 sphp 7.2
+sphp 7.3
 ```
 
 ## Install PHP extensions
 
 PHP extensions are installed using Pecl. We always need to switch to every PHP
 version and install the package for that specific version.
-
-
 
 ### Install ImageMagick extension
 
@@ -158,12 +156,6 @@ Please provide the prefix of Imagemagick installation [autodetect] : <enter>
 sphp 5.6 && pecl install imagick
 ```
 
-#### PHP 7.0
-
-```bash
-sphp 7.0 && pecl install imagick
-```
-
 #### PHP 7.1
 
 ```bash
@@ -174,6 +166,12 @@ sphp 7.1 && pecl install imagick
 
 ```bash
 sphp 7.2 && pecl install imagick
+```
+
+#### PHP 7.3
+
+```bash
+sphp 7.3 && pecl install imagick
 ```
 
 ## Certificate files
@@ -188,9 +186,9 @@ Edit the ini file of the proper PHP version:
 
 ```bash
 vi $(brew --prefix)/etc/php/5.6/php.ini
-vi $(brew --prefix)/etc/php/7.0/php.ini
 vi $(brew --prefix)/etc/php/7.1/php.ini
 vi $(brew --prefix)/etc/php/7.2/php.ini
+vi $(brew --prefix)/etc/php/7.3/php.ini
 ```
 
 Uncomment and fill in the keychain paths:
