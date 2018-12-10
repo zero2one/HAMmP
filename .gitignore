@@ -23,3 +23,7 @@ vhosts/*
 vhosts-default/http/*
 !vhosts-default/http/index.html
 !vhosts-default/http/phpinfo.php
+
+# Exclude local certificates.
+certificates/*
+!certificates/README.md
