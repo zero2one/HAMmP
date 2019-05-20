@@ -67,6 +67,18 @@ Copy all those files to the configuration.
 cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf/6.x/* /usr/local/opt/solr/server/solr/CORE_NAME/conf/
 ```
 
+Edit the `solrcore.properties` file 
+
+```bash
+vi /usr/local/opt/solr/server/solr/CORE_NAME/conf/solrcore.properties
+```
+
+and set the proper install directory:
+
+```bash
+solr.install.dir=/usr/local/opt/solr/libexec
+```
+
 Restart Solr to pick up the new configuration.
 
 ```bash
