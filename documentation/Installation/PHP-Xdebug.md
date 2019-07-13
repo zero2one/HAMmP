@@ -17,12 +17,6 @@ More info see the [Xdebug website](https://xdebug.org/).
 sphp 5.6 && pecl install xdebug-2.5.5
 ```
 
-### PHP 7.1
-
-```bash
-sphp 7.1 && pecl install xdebug
-```
-
 ### PHP 7.2
 
 ```bash
@@ -58,7 +52,7 @@ xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
 EOF
 ```
 
-Instead of [php-version] use one of the: 5.6, 7.1, 7.2, 7.3 depending on your
+Instead of [php-version] use one of the: 5.6, 7.2, 7.3 depending on your
 installed versions.
 
 > Note : we change the default port 9000 to 10000 since 9000 is already in use

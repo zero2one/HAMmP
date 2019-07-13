@@ -96,7 +96,7 @@ Install Apache 2.4 with the event MPM, and we'll use Homebrew's OpenSSL
 library since it's more up-to-date than OS X's:
 
 ```bash
-brew install -v httpd --with-brewed-openssl --with-mpm-event
+brew install -v httpd
 ```
 
 ### Add hostname to Apache configuration

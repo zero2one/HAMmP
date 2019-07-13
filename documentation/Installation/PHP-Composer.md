@@ -54,7 +54,7 @@ source ~/.bash_profile
 You can update composer by running:
 
 ```bash
-sudo composer self-update
+composer self-update
 ```
 
 ##	More information
