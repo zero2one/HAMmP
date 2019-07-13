@@ -57,6 +57,16 @@ You can update composer by running:
 composer self-update
 ```
 
+## Speed up composer
+
+### prestissimo
+
+Add plugin that adds parallel downloading of packages.
+
+```bash
+composer global require hirak/prestissimo
+```
+
 ##	More information
 
 [See composer website](https://getcomposer.org) for more information and usage.
