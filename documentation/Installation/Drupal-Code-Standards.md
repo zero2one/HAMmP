@@ -116,5 +116,5 @@ Reference: https://thiagoponte.wordpress.com/2015/08/03/run-php-codesniffer-code
 * See Drupal Code Sniffer documentation
 
 ---
-* [Next : BlackFire](Installation/Blackfire.md)
+* [Next : Mailhog](Installation/Mailhog.md)
 * [Overview](../README.md)
