@@ -83,22 +83,20 @@ php_version
 # Menu function
 function menu {
     echo
-	echo "------------------------------------------------------"
-	echo "| `cwhite Manage\ Brew\ AMP\ Stack`                              |"
-	echo "|  Apache      :  `cgreen 11` Start    `cred 12` Stop    `cyellow 13` Restart  |"
-	echo "|  MariaDB     :  `cgreen 21` Start    `cred 22` Stop    `cyellow 23` Restart  |"
-	echo "|  Solr        :  `cgreen 41` Start    `cred 42` Stop    `cyellow 43` Restart  |"
-	echo "|  Mailcatcher :  `cgreen 61` Start    `cred 62` Open UI             |"
-	echo "|                                                    |"
-	echo "| `cwhite Switch\ PHP\ version` (Current $PHP)$PHP_AFTER                |"
-	echo "|  `cblue 56` 5.6         `cblue 71` 7.1      `cblue 72` 7.2     `cblue 73` 7.3      |"
-	echo "|                                                    |"
-	echo "| `cwhite Other\ Configuration`                                |"
-	echo "|  `cblue 91` Apache      `cblue 92` PHP      `cblue 93` MySQL   `cblue 94` Postfix  |"
-	echo "|  `cblue 99` /etc/hosts                                     |"
-	echo "|                                                    |"
-	echo "| `cblue 0` Quit                                             |"
-	echo "------------------------------------------------------"
+	echo "┌────────────────────────────────────────────────────┐"
+	echo "│ `cwhite Manage\ HAMmP\ Stack`                                 │"
+	echo "│  Apache    : `cgreen 11` Start    `cred 12` Stop     `cyellow 13` Restart    │"
+	echo "│  MariaDB   : `cgreen 21` Start    `cred 22` Stop     `cyellow 23` Restart    │"
+	echo "│  Solr      : `cgreen 41` Start    `cred 42` Stop     `cyellow 43` Restart    │"
+	echo "│                                                    │"
+	echo "│ `cwhite Switch\ PHP\ version` (Current $PHP)$PHP_AFTER                │"
+	echo "│  `cblue 72` 7.2      `cblue 73` 7.3                  `cblue 56` 5.6        │"
+	echo "│                                                    │"
+	echo "│ `cwhite Configuration`                                      │"
+	echo "│  `cblue 91` Apache  `cblue 92` MariaDB   `cblue 93` PHP      `cblue 99` hostfile   │"
+	echo "│                                                    │"
+	echo "│   `cblue 0` Quit                                           │"
+	echo "└────────────────────────────────────────────────────┘"
 	echo
 }
 
@@ -107,7 +105,7 @@ function menu_execute {
 	SERVER=""
 	case $1 in
 
-	# APACHE
+	# Apache service.
 	11)
 		brew services start httpd
 		;;
@@ -118,7 +116,7 @@ function menu_execute {
 		brew services restart httpd
 		;;
 
-	# MySQL
+	# MariaDB service.
 	21)
 		brew services start mariadb
 		;;
@@ -129,7 +127,7 @@ function menu_execute {
 		brew services restart mariadb
 		;;
 
-  # TOMCAT (Solr)
+  # Solr service.
 	41)
 		echo "Starting Solr"
 		solr start
@@ -144,20 +142,7 @@ function menu_execute {
 		;;
 
 
-	# MAILCATCHER
-	61)
-		echo "Starting Mailcatcher"
-		echo "  See mailcatcher.me"
-		mailcatcher
-		echo "  You now can see outgoing email at http://localhost:1080/"
-		;;
-
-	62)
-		open "http://localhost:1080/"
-		;;
-
-
-	# SWITCH PHP VERSIONS
+	# Switch PHP version.
 	50)
 		php_version
 		echo "Current PHP version: $PHP"
@@ -171,34 +156,28 @@ function menu_execute {
 		php_switch $1
 		;;
 
-  # APACHE config.
+    # Apache config.
 	91)
 		vi /usr/local/etc/httpd/httpd.conf
 		;;
 
-	# PHP : Currently active config.
-	92)
+    # MySQL config.
+    92)
+        vi $(brew --prefix)/etc/my.cnf
+    	;;
+
+	# PHP config.
+	93)
 	  php_config
 	  ;;
 
-  # MySQL config.
-	93)
-		vi $(brew --prefix)/etc/my.cnf
-		;;
-
-	# MAIL config.
-	94)
-		sudo vi /etc/postfix/main.cf
-		;;
-
-	# HOSTS
+	# Hostfile.
 	99)
 		sudo vi /etc/hosts
 		;;
 
-
-
-	0)
+    # Quit HAMmP
+	0|Q|q)
 		echo "Bye"
 		QUIT=10
 		;;
@@ -209,7 +188,6 @@ function menu_execute {
 	esac
 }
 
-
 while [  $QUIT -lt 1 ]; do
 	menu
 	read MENU_CHOISE
@@ -217,6 +195,5 @@ while [  $QUIT -lt 1 ]; do
 	menu_execute $MENU_CHOISE
 	echo
 done
-
 
 exit
