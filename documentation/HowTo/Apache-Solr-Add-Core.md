@@ -13,15 +13,13 @@ Run the following command to add a new core:
 solr create -c CORE_NAME
 ```
 
-The command line output will indicate where the core files are located:
+The command line output will indicate that the new core is added:
 
 ```text
-Setup new core instance directory:
-/usr/local/Cellar/solr/6.0.0/server/solr/CORE_NAME
+Created new core 'CORE_NAME'
 ```
 
-There is a shorter path to access the core (without the version prefix). Use 
-that one as the path can change when a newer Solr version is released:
+The new core will be located at:
 
 ```text
 /usr/local/opt/solr/server/solr/CORE_NAME
@@ -33,7 +31,7 @@ that one as the path can change when a newer Solr version is released:
 > Example creating new core 'my_site' using command:
 >
 > Request:
-> `http://localhost:8983/solr/admin/cores?action=CREATE&name=CORE_NAME&instanceDir=my_site`
+> `http://localhost:8983/solr/admin/cores?action=CREATE&name=my_site&instanceDir=my_site`
 >
 > Response:
 > ```json
@@ -59,12 +57,16 @@ The configuration depends on the used Drupal search modules:
 
 The Search API Solr module contains a folder with sets of configuration files 
 depending on the Solr version. Those files are located at:
-`/path/to/sites/all/modules/contrib/search_api_solr/solr-conf`.
+`/path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates`.
+
+> Note : Search api Solr 3.x generates the config files based on the solr
+> configuration. Download these files trough the UI and put those in the proper
+> Solr core directory.
 
 Copy all those files to the configuration.
 
 ```bash
-cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf/6.x/* /usr/local/opt/solr/server/solr/CORE_NAME/conf/
+cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates/7.x/* /usr/local/opt/solr/server/solr/CORE_NAME/conf/
 ```
 
 Edit the `solrcore.properties` file 

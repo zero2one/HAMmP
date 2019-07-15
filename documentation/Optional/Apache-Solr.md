@@ -2,13 +2,13 @@
 
 ## Install Apache Solr
 
-The currently stable version of Search API Solr supports Solr upon version
-6.x. Homebrew has by default only version 7.x.
+Install Solr with homebrew:
 
-Install solr by using a custom gist:
+> Note : Solr requires Java, [install java trough homebrew](./Java.md) if not
+yet installed.
 
 ```bash
-brew instal https://gist.github.com/magnusvk/0df494187f5bed7029540e647a7f7d47/raw/6d74a0ba641a726786197202e22485c4b6ba41c7/solr.rb
+brew instal solr
 ```
 
 You need to start/stop Solr by default manually:
@@ -27,7 +27,7 @@ brew services start solr
 You can access he Web GUI by browsing to 
 [http://localhost:8983](http://localhost:8983).
 
-## Create a new core (Solr 6)
+## Create a new core
 
 > Note : Solr must be running to create a core trough command line. This because
 > it uses the web API for it.
@@ -48,3 +48,8 @@ Open the Solr admin interface dashboard to see log location:
 [http://localhost:8983/solr/#/](http://localhost:8983/solr/#/).
 
 ![Log location](./media/ApacheSolr-logs.png)
+
+### Add solr core for Drupal
+
+See [Apache Solr Add Core](../HowTo/Apache-Solr-Add-Core.md).
+ 

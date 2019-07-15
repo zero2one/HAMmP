@@ -30,7 +30,6 @@ multiple PHP versions and optional extra's.
 * [Xdebug](Installation/PHP-Xdebug.md)
 * [Composer](Installation/PHP-Composer.md)
 * [PHP Code Sniffers](Installation/PHP-Code-Sniffers.md)
-* [BlackFire](Installation/PHP-Blackfire.md)
 * [Drush](Installation/Drupal-Drush.md)
 * [Drupal Code Standards](Installation/Drupal-Code-Standards.md)
 * [MailHog](Installation/Mailhog.md)
@@ -38,9 +37,9 @@ multiple PHP versions and optional extra's.
 
 ### Optional extra's
 
-* [Drupal Tools](Optional/Drupal-Tools.md)
 * [Ruby](Optional/Ruby.md)
 * [Node JS](Optional/Node-js.md)
+* [Java](Optional/Java.md)
 * [Apache Solr](Optional/Apache-Solr.md)
 * [Tika](Optional/Tika.md)
 * [Redis](Optional/Redis.md)
