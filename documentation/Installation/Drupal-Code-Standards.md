@@ -116,5 +116,5 @@ Reference: https://thiagoponte.wordpress.com/2015/08/03/run-php-codesniffer-code
 * See Drupal Code Sniffer documentation
 
 ---
-* [Next : Mailhog](Installation/Mailhog.md)
+* [Next : Mailhog](./Mailhog.md)
 * [Overview](../README.md)

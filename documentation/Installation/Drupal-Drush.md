@@ -21,7 +21,7 @@ More info: https://github.com/drush-ops/drush
 You could install Drush (8) globally using Composer:
 
 ```bash
-composer global require drush/drush
+composer global require drush/drush:8.*
 ```
 
 But in order to avoid dependency issues, it is best to require Drush on a per-project basis via Composer:
