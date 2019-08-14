@@ -50,3 +50,19 @@ Install the Bower Package Manager through NPM like so:
 ```bash
 npm install -g bower
 ```
+
+### Yarn
+
+Install Yarn trough NPM:
+
+```bash
+npm -g install yarn
+```
+
+### Gulp
+
+Install Gulp trough NPM:
+
+```bash
+npm install -g gulp
+``` 
