@@ -22,7 +22,7 @@ Created new core 'CORE_NAME'
 The new core will be located at:
 
 ```text
-/usr/local/opt/solr/server/solr/CORE_NAME
+/usr/local/var/lib/solr/CORE_NAME
 ```
 
 > Note : Solr must be running to create a core through command line because it 
@@ -66,19 +66,19 @@ depending on the Solr version. Those files are located at:
 Copy all those files to the configuration.
 
 ```bash
-cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates/7.x/* /usr/local/opt/solr/server/solr/CORE_NAME/conf/
+cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates/7.x/* /usr/local/var/lib/solr/CORE_NAME/conf/
 ```
 
 Edit the `solrcore.properties` file 
 
 ```bash
-vi /usr/local/opt/solr/server/solr/CORE_NAME/conf/solrcore.properties
+vi /usr/local/var/lib/solr/CORE_NAME/conf/solrcore.properties
 ```
 
 and set the proper install directory:
 
 ```bash
-solr.install.dir=/usr/local/opt/solr/libexec
+solr.install.dir=/usr/local/opt/solr
 ```
 
 Restart Solr to pick up the new configuration.
