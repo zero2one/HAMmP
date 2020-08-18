@@ -17,3 +17,7 @@ The menu contains items to control the services, switch active PHP version, to
 open the service config files and to edit the hosts file.
 
 ![HAMmP menu](./media/management-hammp.png)
+
+---
+
+* [Overview](../README.md)
