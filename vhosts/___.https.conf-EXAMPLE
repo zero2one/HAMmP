@@ -4,15 +4,15 @@
   
   # Change this your local domain name.
   # Don't forget to add it to the /etc/hosts file.
-  ServerName	NAME-OF-THE-PROJECT.dev
+  ServerName	NAME-OF-THE-PROJECT.test
 
   # Change the DocumentRoot to the root path of your project.
   # Do not add a trailing / to the path.
-  DocumentRoot /Volumes/webdev/www/NAME-OF-THE-PROJECT.dev/web
+  DocumentRoot /Volumes/webdev/www/NAME-OF-THE-PROJECT.test/web
   
   # Change the Directory to the root path of your project.
   # Do not forget to add the trailing / to the path.
-  <Directory /Volumes/webdev/www/NAME-OF-THE-PROJECT.dev/web/> 
+  <Directory /Volumes/webdev/www/NAME-OF-THE-PROJECT.test/web/> 
     Options Indexes FollowSymLinks MultiViews
     
     AllowOverride All
@@ -29,8 +29,8 @@
   Include "/Volumes/webdev/www/_apache/include/ssl/ssl-shared-cert.inc"
 
   # Change the name of the log files corresponding the domain name.
-  ErrorLog /Volumes/webdev/www/_apache/log/NAME-OF-THE_PROJECT.dev-https-error.log
+  ErrorLog /Volumes/webdev/www/_apache/log/NAME-OF-THE_PROJECT.test-https-error.log
   LogLevel warn
-  CustomLog /Volumes/webdev/www/_apache/log/NAME-OF-THE_PROJECT.dev-https-access.log combined 
+  CustomLog /Volumes/webdev/www/_apache/log/NAME-OF-THE_PROJECT.test-https-access.log combined 
 
 </VirtualHost>

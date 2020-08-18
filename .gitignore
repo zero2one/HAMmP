@@ -1,3 +1,5 @@
+# Exclude ide.
+.idea
 
 # Exclude generated config files.
 conf.d/hostname.conf
@@ -21,3 +23,7 @@ vhosts/*
 vhosts-default/http/*
 !vhosts-default/http/index.html
 !vhosts-default/http/phpinfo.php
+
+# Exclude local certificates.
+certificates/*
+!certificates/README.md
