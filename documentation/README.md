@@ -55,10 +55,9 @@ multiple PHP versions and optional extra's.
 ### Troubleshooting
 
 * [Homebrew](Troubleshooting/Homebrew.md)
-* [MySQL](Troubleshooting/MySQL.md)
+* [MariaDb](Troubleshooting/MariaDb.md)
 * [Apache](Troubleshooting/Apache.md)
 * [PHP](Troubleshooting/PHP.md)
-* [Too many open files](Troubleshooting/To-Many-Open-Files.md)
 
 ## Resources
 
