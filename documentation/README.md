@@ -1,4 +1,4 @@
-# HAMmPS
+# HAMmP
 
 **HAMmP** is an acronym for:
 
