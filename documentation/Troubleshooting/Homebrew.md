@@ -34,3 +34,7 @@ Update Homebrew and its installed packages:
 $ brew upgrade
 $ brew update
 ```
+
+---
+
+* [Overview](../README.md)

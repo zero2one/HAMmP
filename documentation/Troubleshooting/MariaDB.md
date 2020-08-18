@@ -48,3 +48,7 @@ Restart MariaDB
 ```bash
 brew services start mariadb
 ```
+
+---
+
+* [Overview](../README.md)

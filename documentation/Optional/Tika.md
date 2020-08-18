@@ -32,3 +32,7 @@ module supports extracting (through Tika) document content and store it in the
 search engine index.
 
 Set the proper path (`/usr/local/bin/tika`) to Tika in the module settings.
+
+---
+
+* [Overview](../README.md)

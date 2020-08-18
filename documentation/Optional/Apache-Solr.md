@@ -52,4 +52,7 @@ Open the Solr admin interface dashboard to see log location:
 ### Add solr core for Drupal
 
 See [Apache Solr Add Core](../HowTo/Apache-Solr-Add-Core.md).
- 
+
+---
+
+* [Overview](../README.md)

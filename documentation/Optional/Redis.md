@@ -71,8 +71,11 @@ $ redis-cli ping
 
 If it replies “PONG”, then it’s good to go!
 
----
-
 ## Source
+
 * https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298
 * https://medium.com/@djamaldg/install-use-redis-on-macos-sierra-432ab426640e
+
+---
+
+* [Overview](../README.md)
