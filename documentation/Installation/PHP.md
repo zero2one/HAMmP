@@ -3,17 +3,17 @@
 ## Install multiple PHP version
 
 We want an environment where we can switch between the current active PHP 
-versions. This are 5.6.x, 7.2.x and 7.3.x.
+versions. This are 7.2.x, 7.3.x and 7.4.x.
 
 This describes how to setup Apache with multiple PHP versions.
 
-To do so we install PHP 5.6 > 7.3. Feel free to leave out the versions you 
+To do so we install PHP 7.2 > 7.4. Feel free to leave out the versions you 
 don't need.
 
 ```bash
-brew install php@5.6
 brew install php@7.2
 brew install php@7.3
+brew install php@7.4
 ```
 
 ## Configure PHP
@@ -36,12 +36,6 @@ We update:
 
 We need to update the config for each PHP version:
 
-#### PHP 5.6
-
-```bash
-sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php56-error.log'$'\n' $(brew --prefix)/etc/php/5.6/php.ini
-```
-
 #### PHP 7.2
 
 ```bash
@@ -54,11 +48,18 @@ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systems
 sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php71-error.log'$'\n' $(brew --prefix)/etc/php/7.3/php.ini
 ```
 
-## Switch back to PHP 5.6
-Switch pack to PHP 5.6 (or the lowest version you have installed).
+#### PHP 7.4
 
 ```bash
-brew unlink php@7.3 && brew link --force --overwrite php@5.6
+sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php56-error.log'$'\n' $(brew --prefix)/etc/php/7.4/php.ini
+```
+
+## Switch back to PHP 7.2
+
+Switch pack to PHP 7.2 (or the lowest version you have installed).
+
+```bash
+brew unlink php@7.4 && brew link --force --overwrite php@7.2
 ```
 
 Close all terminal windows and open a new one. This will open a new session with
@@ -73,10 +74,10 @@ php -v
 This should show you the version you just switched back to.
 
 ```
-PHP 5.6.35 (cli) (built: Apr 12 2018 03:02:25)
-Copyright (c) 1997-2016 The PHP Group
-Zend Engine v2.6.0, Copyright (c) 1998-2016 Zend Technologies
-    with Zend OPcache v7.0.6-dev, Copyright (c) 1999-2016, by Zend Technologies
+PHP 7.2.33 (cli) (built: Aug  7 2020 18:29:34) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.2.33, Copyright (c) 1999-2018, by Zend Technologies
 ```
 
 ## Restart Apache
@@ -94,7 +95,7 @@ clone locally during the Apache installation) contains already the configuration
 to serve PHP scripts using PHP-FPM. We only need to start the PHP-FPM service: 
 
 ```bash
-brew services start php@5.6
+brew services start php@7.2
 ```
 
 The config is located at `/Volumes/webdev/www/_apache/conf.d/php-fpm.conf`.
@@ -114,50 +115,9 @@ a helper script to switch between the different PHP versions.
 Run the command with the PHP version you want to enable:
 
 ```
-sphp 5.6
 sphp 7.2
 sphp 7.3
-```
-
-## Install PHP extensions
-
-PHP extensions are installed using Pecl. We always need to switch to every PHP
-version and install the package for that specific version.
-
-### Install ImageMagick extension
-
-ImageMagick is a powerfull library to manipulate images.
-
-First install the brew Imagemagic package:
-
-```bash
-brew install imagemagick
-```
-
-Then install the php extension for every installed PHP version.
-The installation will ask you what the Imagemagick location is, hit enter to let
-the installer autodetect that location.
-
-```
-Please provide the prefix of Imagemagick installation [autodetect] : <enter>
-```
-
-#### PHP 5.6
-
-```bash
-sphp 5.6 && pecl install imagick
-```
-
-#### PHP 7.2
-
-```bash
-sphp 7.2 && pecl install imagick
-```
-
-#### PHP 7.3
-
-```bash
-sphp 7.3 && pecl install imagick
+sphp 7.4
 ```
 
 ## Certificate files
@@ -171,9 +131,9 @@ You need to add the keychain ca files to the PHP configuration:
 Edit the ini file of the proper PHP version:
 
 ```bash
-vi $(brew --prefix)/etc/php/5.6/php.ini
 vi $(brew --prefix)/etc/php/7.2/php.ini
 vi $(brew --prefix)/etc/php/7.3/php.ini
+vi $(brew --prefix)/etc/php/7.4/php.ini
 ```
 
 Uncomment and fill in the keychain paths:
@@ -208,5 +168,5 @@ used Apache mod-php.
 
 ---
 
-* [Next : Xdebug](PHP-Xdebug.md)
+* [Next : ImageMagick](PHP-ImageMagick.md)
 * [Overview](../README.md)

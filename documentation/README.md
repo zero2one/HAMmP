@@ -27,6 +27,7 @@ multiple PHP versions and optional extra's.
 * [MariaDB](Installation/MariaDB.md)
 * [Apache](Installation/Apache.md)
 * [PHP](Installation/PHP.md)
+* [ImageMagick](Installation/PHP-ImageMagick.md)
 * [Xdebug](Installation/PHP-Xdebug.md)
 * [Composer](Installation/PHP-Composer.md)
 * [PHP Code Sniffers](Installation/PHP-Code-Sniffers.md)

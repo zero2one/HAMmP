@@ -26,7 +26,7 @@ Tools like drush require wget. Install it using homebrew:
 brew install wget
 ```
 
-> Note: This will also install openssl. This is needed for PHP 5.6. 
+> Note: This will also install openssl. 
 
 ## pkg-config
 

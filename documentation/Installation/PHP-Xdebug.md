@@ -11,27 +11,10 @@ More info see the [Xdebug website](https://xdebug.org/).
 
 ## Install Xdebug
 
-### PHP 5.6
-
-```bash
-sphp 5.6 && pecl install xdebug-2.5.5
-```
-
-### PHP 7.2
-
 ```bash
 sphp 7.2 && pecl install xdebug
-```
-
-### PHP 7.3
-
-> **WARNING**: There was no official release of xdebug supporting PHP 7.3
-> See https://xdebug.org/updates.php for the latest version.
->
-> There are still problems with code coverage.
-
-```bash
-sphp 7.3 && pecl install xdebug-2.7.0beta1
+sphp 7.3 && pecl install xdebug
+sphp 7.4 && pecl install xdebug
 ```
 
 ##	Configure Xdebug
@@ -52,7 +35,7 @@ xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
 EOF
 ```
 
-Instead of [php-version] use one of the: 5.6, 7.2, 7.3 depending on your
+Instead of [php-version] use one of the: 7.2, 7.3, 7.4 depending on your
 installed versions.
 
 > Note : we change the default port 9000 to 10000 since 9000 is already in use
@@ -63,10 +46,10 @@ installed versions.
 Restart the PHP-FPM service so it loads the changed configuration.
 
 ```bash
-sphp 7.3
+sphp 7.4
 ```
 
-##	Test
+##Test
 
 You should also check [http://localhost/phpinfo.php](http://localhost/phpinfo.php) 
 to ensure that Xdebug information is displayed.
@@ -161,7 +144,6 @@ Configure the extension so it uses the proper IDE:
 * Set the IDE key to `PHPSTORM`
 
 ![Chrome Xdebug helper](./media/Xdebug-3-xdebug-helper.png)
-
 
 ## Xdebug output toggler
 

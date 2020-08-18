@@ -90,7 +90,7 @@ function menu {
 	echo "│  Solr       : `cgreen 41` Start     `cred 42` Stop      `cyellow 43` Restart    │"
 	echo "│                                                       │"
 	echo "│ `cwhite Switch\ PHP\ version` (Current $PHP)$PHP_AFTER                   │"
-	echo "│  `cblue 72` 7.2       `cblue 73` 7.3                    `cblue 56` 5.6        │"
+	echo "│  `cblue 72` 7.2       `cblue 73` 7.3       `cblue 74` 7.4                     │"
 	echo "│                                                       │"
 	echo "│ `cwhite Configuration`                                         │"
 	echo "│  `cblue 91` Apache    `cblue 92` MariaDB   `cblue 93` PHP       `cblue 99` hostfile   │"
