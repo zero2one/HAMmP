@@ -36,17 +36,6 @@ _Multiline command, copy all at once:_
 
 ```bash
 cat >> ~/.bash_profile <<EOF
-#!/bin/bash
-
-EOF
-```
-
-Add the bin directory to `$PATH`:
-
-_Multiline command, copy all at once:_
-
-```bash
-cat >> ~/.bash_profile <<EOF
 
 # HAMmP -----------------------------------------------
 PATH="/Volumes/webdev/www/_apache/bin:$PATH"

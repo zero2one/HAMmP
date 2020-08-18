@@ -38,7 +38,7 @@ Command line tools:
 xcode-select --install
 ```
 
-> **Note** : Installing Xcode essentials is done trough the Software Updates
+> **Note** : Installing Xcode essentials is done through the Software Updates
 > interface (App store).
 
 ---

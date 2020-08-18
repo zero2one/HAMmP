@@ -34,7 +34,7 @@ multiple PHP versions and optional extra's.
 * [Drush](Installation/Drupal-Drush.md)
 * [Drupal Code Standards](Installation/Drupal-Code-Standards.md)
 * [MailHog](Installation/Mailhog.md)
-* [Management Script](Installation/Management-Script.md)
+* [Management](Installation/Management.md)
 
 ### Optional extra's
 
