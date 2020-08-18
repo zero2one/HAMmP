@@ -49,8 +49,8 @@ multiple PHP versions and optional extra's.
 
 * [Add Apache vhost](HowTo/Add-Apache-Vhost.md)
 * [Add Solr core](HowTo/Apache-Solr-Add-Core.md)
-* [MySQL Back-up](HowTo/MySQL-Backup.md) : Take a mysqldump with each database 
-  in its own SQL File
+* [MariaDB Back-up](HowTo/MariaDB-Backup.md) : Take a dump of each MariaDB 
+  database in its own SQL File.
 
 ### Troubleshooting
 
