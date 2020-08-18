@@ -12,9 +12,8 @@ $ brew install redis
 After installation, you will see some notification about some caveats on 
 configuring. Just leave it and continue to following some tasks on this article.
 
-
-
 ## Launch Redis on computer starts.
+
 Register Redis to the Launch Agents:
 
 ```bash
@@ -39,16 +38,14 @@ Unregister Redis autostart on computer start.
 $ launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 ```
 
-
-
 ## Configuration
+
 Location of Redis configuration file.
 
 * `/usr/local/etc/redis.conf`
 
-
-
 ## Uninstall
+
 Uninstall Redis and its files.
 
 ```bash
@@ -56,18 +53,16 @@ $ brew uninstall redis
 $ rm ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 ```
 
-
-
 ## Package info
+
 Get Redis Brew package information.
 
 ```bash
 $ brew info redis
 ```
 
-
-
 ## Test running server
+
 Test if Redis server is running.
 
 ```bash
@@ -76,7 +71,7 @@ $ redis-cli ping
 
 If it replies “PONG”, then it’s good to go!
 
-
+---
 
 ## Source
 * https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298
