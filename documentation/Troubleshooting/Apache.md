@@ -64,7 +64,7 @@ If you can stop the built-in Apache, then it is running:
 sudo apachectl stop
 ```
 
-You will not get this warning when it's running:
+You will not get this warning when it's not active:
 
 ```
 httpd (pid 1316?) not running
