@@ -58,7 +58,7 @@ ls -lah /Volumes/webdev/www/_apache/log
 Some updates/upgrades of MacOS re-enable the Apache server that comes with
 MacOS. This blocks accessing the Apache server installed using Homebrew.
 
-If you can stop the build in Apache is is running:
+If you can stop the built-in Apache, then it is running:
 
 ```bash
 sudo apachectl stop
@@ -70,7 +70,7 @@ You will not get this warning when it's running:
 httpd (pid 1316?) not running
 ```  
 
-Unload the automatically started build-in apache server:
+Unload the automatically started built-in apache server:
 
 ```bash
 sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
