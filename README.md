@@ -1,7 +1,7 @@
 # Apache - MySQL - (multi) PHP stack with Homebrew
 
 This repository contains a basic file structure and helper scripts to setup and
-maintain a local AMP stack on Mac OS X.
+maintain a local Apache, MariaDb and multiple PHP versions stack on MacOS.
 
 This setup is for MacOS.
 
