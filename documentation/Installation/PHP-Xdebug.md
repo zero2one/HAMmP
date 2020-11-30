@@ -12,9 +12,9 @@ More info see the [Xdebug website](https://xdebug.org/).
 ## Install Xdebug
 
 ```bash
-sphp 7.2 && pecl install xdebug
 sphp 7.3 && pecl install xdebug
 sphp 7.4 && pecl install xdebug
+sphp 8.0 && pecl install xdebug
 ```
 
 ##	Configure Xdebug
@@ -22,20 +22,22 @@ sphp 7.4 && pecl install xdebug
 Xdebug is by default not setup to allow debugging. We need to add it to the 
 configuration:
 
+> **Note**: This configuration is for **Xdebug 3.x**!
+
 ```bash
 cat >> $(brew --prefix)/etc/php/[php-version]/conf.d/ext-xdebug.ini <<EOF
 
-xdebug.remote_enable=1
-xdebug.remote_port=10000
-xdebug.remote_handler="dbgp"
-xdebug.remote_host="localhost"
+xdebug.mode=coverage,debug,develop
+xdebug.client_port=10000
+xdebug.client_host="localhost"
 xdebug.idekey=PHPSTORM
 xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
+xdebug.remote_handler="dbgp"
 
 EOF
 ```
 
-Instead of [php-version] use one of the: 7.2, 7.3, 7.4 depending on your
+Instead of [php-version] use one of the: 7.3, 7.4, 8.0 depending on your
 installed versions.
 
 > Note : we change the default port 9000 to 10000 since 9000 is already in use
@@ -46,7 +48,7 @@ installed versions.
 Restart the PHP-FPM service so it loads the changed configuration.
 
 ```bash
-sphp 7.4
+sphp 8.0
 ```
 
 ##Test

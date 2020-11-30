@@ -91,6 +91,7 @@ function menu {
 	echo "│                                                       │"
 	echo "│ `cwhite Switch\ PHP\ version` (Current $PHP)$PHP_AFTER                   │"
 	echo "│  `cblue 72` 7.2       `cblue 73` 7.3       `cblue 74` 7.4                     │"
+	echo "│  `cblue 80` 8.0                                               │"
 	echo "│                                                       │"
 	echo "│ `cwhite Configuration`                                         │"
 	echo "│  `cblue 91` Apache    `cblue 92` MariaDB   `cblue 93` PHP       `cblue 99` hostfile   │"
@@ -143,16 +144,11 @@ function menu_execute {
 
 
 	# Switch PHP version.
-	50)
-		php_version
-		echo "Current PHP version: $PHP"
-		;;
-
-	56)
+  7[0-9])
 		php_switch $1
 		;;
 
-    7[0-9])
+  8[0-9])
 		php_switch $1
 		;;
 

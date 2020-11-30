@@ -14,9 +14,9 @@ You will end up with:
 * Apache 2.4.x
 * MariaDB 15.1.x
 * One or more PHP versions:
-    * PHP 7.2
     * PHP 7.3
     * PHP 7.4
+    * PHP 8.0
 * A script to switch between PHP versions.
 * A CLI to start/stop services and to easily gain access to the configuration 
   files.
