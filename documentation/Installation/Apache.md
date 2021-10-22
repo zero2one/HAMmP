@@ -206,9 +206,10 @@ Now we can access the localhost on the default ports:
 * http: `http://localhost`
 * https: `https://localhost`
 
-> Note : If you can't access the localhost on port 80/443 there is probably
-> another service listening on that port. It could be a port forwarded by 
-> Docker.
+## Troubleshooting
+
+If you can't access the localhost on port 80/443 there is probably another
+service listening on that port. It could be a port forwarded by Docker.
 
 You can check what service is running on port 80 by running the following
 command, the service name will be in the first column:
