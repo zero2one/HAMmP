@@ -203,8 +203,19 @@ sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
 
 Now we can access the localhost on the default ports:
 
-*	http: `http://localhost`
-*	https: `https://localhost`
+* http: `http://localhost`
+* https: `https://localhost`
+
+> Note : If you can't access the localhost on port 80/443 there is probably
+> another service listening on that port. It could be a port forwarded by 
+> Docker.
+
+You can check what service is running on port 80 by running the following
+command, the service name will be in the first column:
+
+```bash
+sudo lsof -nP -i4TCP:80 | grep LISTEN
+```
 
 ---
 
