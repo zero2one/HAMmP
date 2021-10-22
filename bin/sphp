@@ -26,8 +26,9 @@ fi
 
 # Check if the given version is not already active.
 if [ "$newversion" == "$currentversion" ]; then
-  echo "PHP version is already $newversion, restarting PHP-FPM..."
+  echo "PHP version is already $newversion, restarting PHP-FPM & HTTPD..."
   brew services restart "php@$currentversion"
+  brew services restart httpd
   echo
   exit 0
 fi
@@ -37,8 +38,10 @@ echo "PHP version $newversion found"
 echo "Switching from $currentversion to $newversion..."
 
 brew services stop "php@$currentversion"
-brew unlink php@$currentversion && brew link --force --overwrite php@$newversion
+brew unlink "php@$currentversion" && brew link --force --overwrite "php@$newversion"
 brew services start "php@$newversion"
+brew services restart httpd
+
 
 echo "Done."
 echo

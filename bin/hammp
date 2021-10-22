@@ -61,17 +61,15 @@ function php_config {
   if [ -z "$version" ]; then
     version=$(php_version_number)
   fi
-
-  configVersion="${version:0:1}.${version:1}"
-
-  vi $(brew --prefix)/etc/php/$configVersion/php.ini
+    
+  vi $(brew --prefix)/etc/php/$version/php.ini
 }
 
 ##
 # Get the current php version as number
 ##
 function php_version_number {
-  currentversion="`php -r \"echo str_replace('.', '', substr(phpversion(), 0, 3));\"`"
+  currentversion="`php -r \"echo substr(phpversion(), 0, 3);\"`"
   echo "$currentversion"
 }
 
