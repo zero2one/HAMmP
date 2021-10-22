@@ -51,7 +51,7 @@ Restart the PHP-FPM service so it loads the changed configuration.
 sphp 8.0
 ```
 
-##Test
+## Test
 
 You should also check [http://localhost/phpinfo.php](http://localhost/phpinfo.php) 
 to ensure that Xdebug information is displayed.
