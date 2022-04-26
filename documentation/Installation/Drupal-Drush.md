@@ -89,7 +89,7 @@ putenv("DYLD_LIBRARY_PATH=''");
 
 ### Set the environment variable
 
-You can set an environment variable for your vhosts. Drush is run trough cli 
+You can set an environment variable for your vhosts. Drush is run through cli 
 and does not know about the vhost settings.
 
 You can set the environment variable in the drushrc.php file:
