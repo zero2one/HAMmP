@@ -53,6 +53,17 @@ Open the Solr admin interface dashboard to see log location:
 
 See [Apache Solr Add Core](../HowTo/Apache-Solr-Add-Core.md).
 
+## Clearing all data within a core
+
+All indexed data within a singe core can be cleared by running the solr-clear
+command:
+
+```bash
+solr-clear CORE_NAME
+```
+
+This is a custom script and is located within the [bin directory](../../bin).
+
 ---
 
 * [Overview](../README.md)
