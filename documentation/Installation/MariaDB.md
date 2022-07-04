@@ -32,7 +32,7 @@ The following is a single, multi-line command. Copy and paste the entire
 block at once:
 
 ```bash
-cat >> /usr/local/etc/my.cnf.d/mysqld.cnf <<'EOF'
+cat >> /opt/homebrew/etc/my.cnf.d/mysqld.cnf <<'EOF'
 
 [mysqld] 
 skip-external-locking
@@ -53,7 +53,7 @@ EOF
 ```
 
 ```bash
-cat >> /usr/local/etc/my.cnf.d/innodb.cnf <<'EOF'
+cat >> /opt/homebrew/etc/my.cnf.d/innodb.cnf <<'EOF'
 
 [innodb]
 innodb_file_per_table = 1
