@@ -29,13 +29,13 @@ You should now have a directory called /Volumes/webdev/www/_apache
 Add the HAmMP bin directory to your `$PATH` environment variable so we can use 
 the included bash scripts.
 
-> **Note** : Check first if you already have a .bash_profile file in your home 
+> **Note** : Check first if you already have a .zshrc file in your home 
 directory. If not create a new one!
 
 _Multiline command, copy all at once:_
 
 ```bash
-cat >> ~/.bash_profile <<EOF
+cat >> ~/.zshrc <<EOF
 
 # HAMmP -----------------------------------------------
 PATH="/Volumes/webdev/www/_apache/bin:$PATH"
@@ -43,10 +43,10 @@ PATH="/Volumes/webdev/www/_apache/bin:$PATH"
 EOF
 ```
 
-Load the altered `.bash_profile` file:
+Load the altered `.zshrc` file:
 
 ```bash
-source ~/.bash_profile
+source ~/.zshrc
 ```
 
 Make sure that the scripts can be executed:
