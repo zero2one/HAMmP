@@ -147,7 +147,7 @@ Uncomment and fill in the keychain paths:
 ; OS-managed cert stores in its absence. If specified, this value may still
 ; be overridden on a per-stream basis via the "cafile" SSL stream context
 ; option.
-openssl.cafile = "/usr/local/etc/openssl@1.1/cert.pem"
+openssl.cafile = "/opt/homebrew/etc/openssl@1.1/cert.pem"
 
 ; If openssl.cafile is not specified or if the CA file is not found, the
 ; directory pointed to by openssl.capath is searched for a suitable
@@ -156,7 +156,7 @@ openssl.cafile = "/usr/local/etc/openssl@1.1/cert.pem"
 ; attempt to use the OS-managed cert stores in its absence. If specified,
 ; this value may still be overridden on a per-stream basis via the "capath"
 ; SSL stream context option.
-openssl.capath = "/usr/local/etc/openssl@1.1/certs"
+openssl.capath = "/opt/homebrew/etc/openssl@1.1/certs"
 ```
 
 ## Sources
