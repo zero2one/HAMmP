@@ -56,7 +56,7 @@ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systems
 
 ## Switch back to PHP 7.3
 
-Switch pack to PHP 7.3 (or the lowest version you have installed).
+Switch back to PHP 7.3 (or the lowest version you have installed).
 
 ```bash
 brew unlink php@8.0 && brew link --force --overwrite php@7.3
