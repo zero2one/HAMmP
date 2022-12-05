@@ -38,12 +38,13 @@ multiple PHP versions and optional extra's.
 
 ### Optional extra's
 
-* [Ruby](Optional/Ruby.md)
-* [Node JS](Optional/Node-js.md)
-* [Java](Optional/Java.md)
 * [Apache Solr](Optional/Apache-Solr.md)
-* [Tika](Optional/Tika.md)
+* [Java](Optional/Java.md)
+* [Node JS](Optional/Node-js.md)
+* [Python](Optional/Python.md)
 * [Redis](Optional/Redis.md)
+* [Ruby](Optional/Ruby.md)
+* [Tika](Optional/Tika.md)
 
 ### How to's
 
