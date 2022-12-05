@@ -23,9 +23,9 @@ Please provide the prefix of Imagemagick installation [autodetect] : <enter>
 Install ImageMagick for each installed PHP version:
 
 ```bash
-sphp 7.3 && pecl install imagick
 sphp 7.4 && pecl install imagick
 sphp 8.0 && pecl install imagick
+sphp 8.1 && pecl install imagick
 ```
 
 ## Update ImageMagick extension
@@ -40,17 +40,17 @@ First edit the php.ini config files and remove the line
 `extension="imagick.so"`.
 
 ```
-vi /usr/local/etc/php/7.3/php.ini
 vi /usr/local/etc/php/7.4/php.ini
 vi /usr/local/etc/php/8.0/php.ini
+vi /usr/local/etc/php/8.1/php.ini
 ```
 
 Reinstall ImageMagick for all PHP versions:
 
 ```
-sphp 7.3 && pecl install -f imagick
 sphp 7.4 && pecl install -f imagick
 sphp 8.0 && pecl install -f imagick
+sphp 8.1 && pecl install -f imagick
 ```
 
 ---

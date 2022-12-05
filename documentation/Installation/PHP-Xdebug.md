@@ -12,9 +12,9 @@ More info see the [Xdebug website](https://xdebug.org/).
 ## Install Xdebug
 
 ```bash
-sphp 7.3 && pecl install xdebug
 sphp 7.4 && pecl install xdebug
 sphp 8.0 && pecl install xdebug
+sphp 8.1 && pecl install xdebug
 ```
 
 ##	Configure Xdebug
@@ -37,7 +37,7 @@ xdebug.remote_handler="dbgp"
 EOF
 ```
 
-Instead of [php-version] use one of the: 7.3, 7.4, 8.0 depending on your
+Instead of [php-version] use one of the: 7.4, 8.0 or 8.1 depending on your
 installed versions.
 
 > Note : we change the default port 9000 to 10000 since 9000 is already in use
@@ -48,7 +48,7 @@ installed versions.
 Restart the PHP-FPM service so it loads the changed configuration.
 
 ```bash
-sphp 8.0
+sphp 8.1
 ```
 
 ## Test

@@ -12,7 +12,7 @@ Our command becomes:
 
 ```bash
 openssl req -config domain.test.conf -new -sha256 -newkey rsa:2048 \
-  -nodes -keyout domain.test.key -x509 -days 365 \
+  -nodes -keyout domain.test.key -x509 -days 3650 \
   -out domain.test.crt
 ```
 
