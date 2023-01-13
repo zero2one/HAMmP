@@ -4,8 +4,8 @@
 
 Install homebrew as described in their documentation:
 
-```bash
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 When command line tools are run from within applications (e.g. Sourcetree), an
@@ -14,7 +14,7 @@ commands that not can find binaries installed trough homebrew.
 
 Run the following command and reboot to fix this:
 
-```bash
+```shell
 sudo launchctl config user path /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
@@ -22,7 +22,7 @@ sudo launchctl config user path /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Tools like drush require wget. Install it using homebrew:
  
-```bash
+```shell
 brew install wget
 ```
 
@@ -32,7 +32,7 @@ brew install wget
 
 pkg-config is required to install some PHP extensions. Install it up-front:
 
-```bash
+```shell
 brew install pkg-config
 ```
 
@@ -40,8 +40,16 @@ brew install pkg-config
 
 Homebrew has a more recent version of Git.
 
-```bash
+```shell
 brew install git
+```
+
+## OpenSSL
+
+Install OpenSSM:
+
+```shell
+brew install openssl
 ```
 
 ---

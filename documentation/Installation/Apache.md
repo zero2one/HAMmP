@@ -52,7 +52,7 @@ source ~/.zshrc
 Make sure that the scripts can be executed:
 
 ```bash
-$ chmod +x /Volumes/webdev/www/_apache/bin/*
+chmod +x /Volumes/webdev/www/_apache/bin/*
 ```
 
 ##	Disable build-in Apache

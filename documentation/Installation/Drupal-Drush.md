@@ -20,19 +20,19 @@ More info: https://github.com/drush-ops/drush
 
 You could install Drush (8) globally using Composer:
 
-```bash
-composer global require drush/drush:8.*
+```shell
+composer global require drush/drush:^8.4
 ```
 
 But in order to avoid dependency issues, it is best to require Drush on a per-project basis via Composer:
 
-```bash
+```shell
 composer require drush/drush
 ```
 
 However, it is inconvenient to type `vendor/bin/drush` in order to execute Drush commands.  By installing the [drush launcher](https://github.com/drush-ops/drush-launcher) globally on your local machine, you can simply type `drush` on the command line, and the launcher will find and execute the project specific version of drush located in your project's `vendor` directory:
 
-```bash
+```shell
 curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
 chmod +x drush.phar
 sudo mv drush.phar /usr/local/bin/drush
@@ -42,7 +42,7 @@ sudo mv drush.phar /usr/local/bin/drush
 
 Overview of available commands:
 
-```bash
+```shell
 drush help
 ```
 
@@ -50,7 +50,7 @@ drush help
 
 We got Drush from GitHub we can upgrade it anytime to the latest version:
 
-```bash
+```shell
 composer global update
 ```
 
@@ -60,13 +60,13 @@ You can set or override drush configuration.
 Do this by creating a .drush folder within your home folder (if it does not 
 already exists):
 
-```bash
+```shell
 mkdir ~/.drush
 ```
 
 Create (or edit) the drush config file:
 
-```bash
+```shell
 vi ~/.drush/drushrc.php
 ```
 
@@ -145,21 +145,7 @@ $options['structure-tables']['common'] = array(
 $options['structure-tables-key'] = 'common';
 ```
 
-## Useful extra commands
-
-Add extra commands that are handy during development:
-
-### Drush language
-
-Commands to switch and manage the languages of a Drupal installation.
-See [drush_language on d.o.](https://www.drupal.org/project/drush_language).
-
-```bash
-cd ~
-drush dl drush_language
-```
-
 ---
 
-* [Next : PHP Code Sniffers](./PHP-Code-Sniffers.md)
+* [Next : Mailhog](./Mailhog.md)
 * [Overview](../README.md)

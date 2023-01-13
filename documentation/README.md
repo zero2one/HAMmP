@@ -30,9 +30,7 @@ multiple PHP versions and optional extra's.
 * [ImageMagick](Installation/PHP-ImageMagick.md)
 * [Xdebug](Installation/PHP-Xdebug.md)
 * [Composer](Installation/PHP-Composer.md)
-* [PHP Code Sniffers](Installation/PHP-Code-Sniffers.md)
 * [Drush](Installation/Drupal-Drush.md)
-* [Drupal Code Standards](Installation/Drupal-Code-Standards.md)
 * [MailHog](Installation/Mailhog.md)
 * [Management](Installation/Management.md)
 

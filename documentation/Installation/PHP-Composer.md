@@ -14,7 +14,7 @@ project).
 
 Download composer:
 
-```bash
+```shell
 mkdir ~/tmp
 cd ~/tmp
 curl -sS https://getcomposer.org/installer | php
@@ -22,19 +22,21 @@ curl -sS https://getcomposer.org/installer | php
 
 Move it to the global bin directory:
 
-```bash
+```shell
 sudo mv composer.phar /usr/local/bin/composer
 ```
 
 It is now installed:
 
-```bash
+```shell
 composer --help
 ```
 
 Make sure Composer's global bin directory is on the system PATH (recommended):
 
-```bash
+Bash:
+
+```shell
 cat >> ~/.bash_profile <<'EOF'
 
 # Composer -----------------------------------
@@ -43,9 +45,22 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 EOF
 ```
 
-Reload the profile file to make it active:
+```shell
+source ~/.bash_profile
+```
 
-```bash
+ZSH:
+
+```shell
+cat >> ~/.zshrc <<'EOF'
+
+# Composer -----------------------------------
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+EOF
+```
+
+```shell
 source ~/.bash_profile
 ```
 
@@ -53,7 +68,7 @@ source ~/.bash_profile
 
 You can update composer by running:
 
-```bash
+```shell
 composer self-update
 ```
 

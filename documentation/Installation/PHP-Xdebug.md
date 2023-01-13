@@ -12,9 +12,8 @@ More info see the [Xdebug website](https://xdebug.org/).
 ## Install Xdebug
 
 ```bash
-sphp 7.4 && pecl install xdebug
-sphp 8.0 && pecl install xdebug
 sphp 8.1 && pecl install xdebug
+sphp 8.2 && pecl install xdebug
 ```
 
 ##	Configure Xdebug
@@ -37,7 +36,7 @@ xdebug.remote_handler="dbgp"
 EOF
 ```
 
-Instead of [php-version] use one of the: 7.4, 8.0 or 8.1 depending on your
+Instead of [php-version] use one of the: 8.1 or 8.2 depending on your
 installed versions.
 
 > Note : we change the default port 9000 to 10000 since 9000 is already in use
@@ -48,7 +47,7 @@ installed versions.
 Restart the PHP-FPM service so it loads the changed configuration.
 
 ```bash
-sphp 8.1
+sphp 8.2
 ```
 
 ## Test
@@ -146,17 +145,6 @@ Configure the extension so it uses the proper IDE:
 * Set the IDE key to `PHPSTORM`
 
 ![Chrome Xdebug helper](./media/Xdebug-3-xdebug-helper.png)
-
-## Xdebug output toggler
-
-There is an optional chrome extension
-"[xDebug output toggler](https://chrome.google.com/webstore/detail/xdebug-output-toggler/ekjpdpmelhdapkilemcamlpcocekgbed?hl=en-GB)"
-to toggle show/hide xDebug output in the browser. 
-
-This can be handy to temporary hide this information (or errors) from the
-screen.
-
-![Chrome Xdebug output toggler](./media/Xdebug-4-xdebug-output-toggler.png)
 
 ## Extensions for other browsers
 

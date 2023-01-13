@@ -51,12 +51,12 @@ sed -e 's/;*sendmail_path =.*/sendmail_path = \/usr\/local\/bin\/mailhog sendmai
 ```
 
 > *Note* : Run the command multiple times and replace [VERSION] by the different
-> installed PHP versions (7.3, 7.4, 8.9, ...).
+> installed PHP versions (7.4, 8.0, 8.1, ...).
 
 Restart PHP to activate configuration changes
 
 ```bash
-sphp 8.0
+sphp 8.2
 ```
 
 ## Source 

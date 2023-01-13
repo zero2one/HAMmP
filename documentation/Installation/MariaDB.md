@@ -32,7 +32,7 @@ The following is a single, multi-line command. Copy and paste the entire
 block at once:
 
 ```bash
-cat >> /opt/homebrew/etc/my.cnf.d/mysqld.cnf <<'EOF'
+cat >> $(brew --prefix)/etc/my.cnf.d/mysqld.cnf <<'EOF'
 
 [mysqld] 
 skip-external-locking
@@ -53,7 +53,7 @@ EOF
 ```
 
 ```bash
-cat >> /opt/homebrew/etc/my.cnf.d/innodb.cnf <<'EOF'
+cat >> $(brew --prefix)/etc/my.cnf.d/innodb.cnf <<'EOF'
 
 [innodb]
 innodb_file_per_table = 1
@@ -151,6 +151,30 @@ installation should now be secure.
 
 Thanks for using MariaDB!
 ```
+
+In case MariaDB does not accept empty password when the installation was just
+finished; reset the password with following commands (while MariaDB is running):
+
+Use your macbook password when asked:
+
+```shell
+sudo mysql
+```
+
+Run following query to set the password, replace `newrootpassword` with your
+own:
+
+```mysql
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'newrootpassword';
+```
+
+Logout from Mariadb:
+
+```mysql
+exit
+```
+
+You should now be able to perform the security step from above.
 
 ---
 
