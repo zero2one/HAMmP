@@ -52,6 +52,15 @@ Install OpenSSM:
 brew install openssl
 ```
 
+### GNU patch
+
+There is a problem when applying patches on MacOS Ventura, installing GNU patch
+fixes this issue;
+
+```shell
+brew install gpatch
+```
+
 ---
 
 * [Next : MariaDB](./MariaDB.md)
