@@ -17,7 +17,7 @@ Install the version(s) you need.
 
 ```shell
 pyenv install 2.7.18
-pyenv install 3.11.0
+pyenv install 3.11.1
 ```
 
 Add pyenv to your PATH so that you can reference python (not python3):
@@ -31,7 +31,7 @@ Both versions should now be available:
 Set the Python versions you want to use globally:
 
 ```shell
-pyenv global 3.7.0 2.7.15
+pyenv global 3.11.1 2.7.18
 ```
 
 Open a new terminal window and confirm your pyenv version is mapped to python
