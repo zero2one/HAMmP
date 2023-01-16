@@ -25,6 +25,16 @@ This will:
 * The local CA is now installed in the Firefox trust store (requires browser
   restart)! 🦊
 
+Add the CA to the OpenSSL certifications (for PHP). This is needed until support
+is added, see https://github.com/FiloSottile/mkcert/issues/199.
+
+```shell
+ln -s "$(mkcert -CAROOT)/rootCA.pem" /usr/local/etc/openssl@1.1/certs
+/usr/local/opt/openssl@1.1/bin/c_rehash
+ln -s "$(mkcert -CAROOT)/rootCA.pem" /usr/local/etc/openssl@3/certs
+/usr/local/opt/openssl@3/bin/c_rehash
+```
+
 ## Usage
 
 This project has created a certifications directory for you, see the
