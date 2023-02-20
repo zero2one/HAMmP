@@ -43,6 +43,7 @@ multiple PHP versions and optional extra's.
 * [Redis](Optional/Redis.md)
 * [Ruby](Optional/Ruby.md)
 * [Tika](Optional/Tika.md)
+* [Run a single vhost on a different PHP version](Optional/Vhost-on-different-php-version.md)
 
 ### How to's
 
