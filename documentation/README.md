@@ -58,6 +58,7 @@ multiple PHP versions and optional extra's.
 * [MariaDb](Troubleshooting/MariaDb.md)
 * [Apache](Troubleshooting/Apache.md)
 * [PHP](Troubleshooting/PHP.md)
+* [Solr](Troubleshooting/Solr.md)
 
 ## Resources
 

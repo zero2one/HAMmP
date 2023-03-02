@@ -66,19 +66,7 @@ depending on the Solr version. Those files are located at:
 Copy all those files to the configuration.
 
 ```bash
-cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates/7.x/* /usr/local/var/lib/solr/CORE_NAME/conf/
-```
-
-Edit the `solrcore.properties` file 
-
-```bash
-vi /usr/local/var/lib/solr/CORE_NAME/conf/solrcore.properties
-```
-
-and set the proper install directory:
-
-```bash
-solr.install.dir=/usr/local/opt/solr
+cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates/8.x/* /usr/local/var/lib/solr/CORE_NAME/conf/
 ```
 
 Restart Solr to pick up the new configuration.
