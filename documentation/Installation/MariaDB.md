@@ -48,6 +48,7 @@ net_buffer_length = 2K
 thread_stack = 128K
 query_cache_size = 16M
 thread_cache_size = 4
+transaction_isolation = "READ-COMMITTED"
  
 EOF
 ```
