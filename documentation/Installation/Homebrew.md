@@ -52,13 +52,27 @@ Install OpenSSM:
 brew install openssl
 ```
 
-### GNU patch
+## GNU patch
 
 There is a problem when applying patches on MacOS Ventura, installing GNU patch
 fixes this issue;
 
 ```shell
 brew install gpatch
+```
+
+## Direnv
+
+[direnv](https://direnv.net/) is an extension for your shell. It augments
+existing shells with a new feature that can load and unload environment
+variables depending on the current directory.
+
+Drush launcher is no longer supported. To avoid having to type vendor/bin/drush
+in projects we use direnv and a `.envrc` file in Drupal projects to set the path
+to the local Drush script.
+
+```shell
+brew install direnv
 ```
 
 ---
