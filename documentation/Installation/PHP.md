@@ -56,6 +56,25 @@ sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systems
 sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.2-error.log'$'\n' $(brew --prefix)/etc/php/8.2/php.ini
 ```
 
+### Fix segmentation fault
+
+There is a segmentation fault when you use the gettext library to load
+translation files. This can be fixed by adding following settings to the php-fpm
+configuration:
+
+```
+;Signal 11 workaround
+;See https://github.com/Homebrew/homebrew-core/issues/137431#issuecomment-1763383159
+env['PGGSSENCMODE'] = disable
+env['LC_ALL'] = C
+```
+
+Add this to all PHP versions in use:
+
+* $(brew --prefix)/etc/php/8.1/php-fpm.d/www.conf
+* $(brew --prefix)/etc/php/8.2/php-fpm.d/www.conf
+
+
 ## Switch back to PHP 8.1
 
 Switch pack to PHP 8.1 (or the lowest version you have installed).
