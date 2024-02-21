@@ -12,8 +12,8 @@ More info see the [Xdebug website](https://xdebug.org/).
 ## Install Xdebug
 
 ```bash
-sphp 8.1 && pecl install xdebug
 sphp 8.2 && pecl install xdebug
+sphp 8.3 && pecl install xdebug
 ```
 
 ##	Configure Xdebug

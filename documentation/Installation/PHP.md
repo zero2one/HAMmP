@@ -20,8 +20,8 @@ brew tap shivammathur/php
 Now we can install whatever version we need, all the way back to 7.0:
 
 ```bash
-brew install shivammathur/php/php@8.1
 brew install shivammathur/php/php@8.2
+brew install shivammathur/php/php@8.3
 ```
 
 ## Configure PHP
@@ -44,16 +44,16 @@ We update:
 
 We need to update the config for each PHP version:
 
-#### PHP 8.1
-
-```bash
-sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.1-error.log'$'\n' $(brew --prefix)/etc/php/8.1/php.ini
-```
-
 #### PHP 8.2
 
 ```bash
 sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.2-error.log'$'\n' $(brew --prefix)/etc/php/8.2/php.ini
+```
+
+#### PHP 8.3
+
+```bash
+sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.3-error.log'$'\n' $(brew --prefix)/etc/php/8.3/php.ini
 ```
 
 ### Fix segmentation fault
@@ -71,16 +71,17 @@ env['LC_ALL'] = C
 
 Add this to all PHP versions in use:
 
-* $(brew --prefix)/etc/php/8.1/php-fpm.d/www.conf
-* $(brew --prefix)/etc/php/8.2/php-fpm.d/www.conf
+```bash
+vi $(brew --prefix)/etc/php/8.2/php-fpm.d/www.conf
+vi $(brew --prefix)/etc/php/8.3/php-fpm.d/www.conf
+```
 
+## Switch back to PHP 8.2
 
-## Switch back to PHP 8.1
-
-Switch pack to PHP 8.1 (or the lowest version you have installed).
+Switch pack to PHP 8.2 (or the lowest version you have installed).
 
 ```bash
-brew unlink php@8.2 && brew link --force --overwrite php@8.1
+brew unlink php@8.3 && brew link --force --overwrite php@8.2
 ```
 
 Close all terminal windows and open a new one. This will open a new session with
@@ -116,7 +117,7 @@ clone locally during the Apache installation) contains already the configuration
 to serve PHP scripts using PHP-FPM. We only need to start the PHP-FPM service: 
 
 ```bash
-brew services start php@8.1
+brew services start php@8.2
 ```
 
 The config is located at `/Volumes/webdev/www/_apache/conf.d/php-fpm.conf`.
@@ -136,8 +137,8 @@ a helper script to switch between the different PHP versions.
 Run the command with the PHP version you want to enable:
 
 ```
-sphp 8.1
 sphp 8.2
+sphp 8.3
 ```
 
 ## Certificate files
@@ -151,8 +152,8 @@ You need to add the keychain ca files to the PHP configuration:
 Edit the ini file of the proper PHP version:
 
 ```bash
-vi $(brew --prefix)/etc/php/8.1/php.ini
 vi $(brew --prefix)/etc/php/8.2/php.ini
+vi $(brew --prefix)/etc/php/8.3/php.ini
 ```
 
 Uncomment and fill in the keychain paths:
@@ -165,7 +166,7 @@ Uncomment and fill in the keychain paths:
 ; OS-managed cert stores in its absence. If specified, this value may still
 ; be overridden on a per-stream basis via the "cafile" SSL stream context
 ; option.
-openssl.cafile = "/usr/local/etc/openssl@1.1/cert.pem"
+openssl.cafile = "/usr/local/etc/openssl@3/cert.pem"
 
 ; If openssl.cafile is not specified or if the CA file is not found, the
 ; directory pointed to by openssl.capath is searched for a suitable
@@ -174,7 +175,7 @@ openssl.cafile = "/usr/local/etc/openssl@1.1/cert.pem"
 ; attempt to use the OS-managed cert stores in its absence. If specified,
 ; this value may still be overridden on a per-stream basis via the "capath"
 ; SSL stream context option.
-openssl.capath = "/usr/local/etc/openssl@1.1/certs"
+openssl.capath = "/usr/local/etc/openssl@3/certs"
 ```
 
 ## Sources
