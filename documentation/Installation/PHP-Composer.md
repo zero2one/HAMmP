@@ -12,18 +12,10 @@ This describes ho to install composer globally (available everywhere and for
 everyone on your workstation). You can install composer also locally (per 
 project).
 
-Download composer:
+Install composer using homebrew:
 
 ```shell
-mkdir ~/tmp
-cd ~/tmp
-curl -sS https://getcomposer.org/installer | php
-```
-
-Move it to the global bin directory:
-
-```shell
-sudo mv composer.phar /usr/local/bin/composer
+brew install composer
 ```
 
 It is now installed:
@@ -32,44 +24,12 @@ It is now installed:
 composer --help
 ```
 
-Make sure Composer's global bin directory is on the system PATH (recommended):
-
-Bash:
-
-```shell
-cat >> ~/.bash_profile <<'EOF'
-
-# Composer -----------------------------------
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-EOF
-```
-
-```shell
-source ~/.bash_profile
-```
-
-ZSH:
-
-```shell
-cat >> ~/.zshrc <<'EOF'
-
-# Composer -----------------------------------
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-EOF
-```
-
-```shell
-source ~/.bash_profile
-```
-
 ##	Upgrade composer
 
-You can update composer by running:
+You can update composer using homebrew:
 
 ```shell
-composer self-update
+brew upgrade composer
 ```
 
 ##	More information
