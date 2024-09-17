@@ -29,10 +29,9 @@ Add the CA to the OpenSSL certifications (for PHP). This is needed until support
 is added, see https://github.com/FiloSottile/mkcert/issues/199.
 
 ```shell
-ln -s "$(mkcert -CAROOT)/rootCA.pem" /usr/local/etc/openssl@1.1/certs
-/usr/local/opt/openssl@1.1/bin/c_rehash
-ln -s "$(mkcert -CAROOT)/rootCA.pem" /usr/local/etc/openssl@3/certs
-/usr/local/opt/openssl@3/bin/c_rehash
+mkdir $(brew --prefix)/etc/openssl@3/certs
+ln -s "$(mkcert -CAROOT)/rootCA.pem" $(brew --prefix)/etc/openssl@3/certs
+$(brew --prefix)/opt/openssl@3/bin/c_rehash
 ```
 
 ## Usage
