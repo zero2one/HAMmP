@@ -24,7 +24,7 @@ multiple PHP versions and optional extra's.
 
 * [Preparation](Installation/Preparation.md)
 * [Homebrew](Installation/Homebrew.md)
-* [MariaDB](Installation/MariaDB.md)
+* [MariaDB](Installation/MariaDB.md) or [MySQL](Installation/MariaDB.md)
 * [Apache](Installation/Apache.md)
 * [PHP](Installation/PHP.md)
 * [ImageMagick](Installation/PHP-ImageMagick.md)
@@ -51,6 +51,7 @@ multiple PHP versions and optional extra's.
 * [Add Solr core](HowTo/Apache-Solr-Add-Core.md)
 * [MariaDB Back-up](HowTo/MariaDB-Backup.md) : Take a dump of each MariaDB 
   database in its own SQL File.
+* [MariaDB to MySQL](HowTo/MariaDB-to-MySQL.md) : Migrate from MariaDB to MySQL.
 
 ### Troubleshooting
 

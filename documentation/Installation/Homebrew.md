@@ -79,5 +79,5 @@ brew install direnv
 
 ---
 
-* [Next : MariaDB](./MariaDB.md)
+* Next : [MariaDB](./MariaDB.md) or [MySQL](./MySQL.md)
 * [Overview](../README.md)
