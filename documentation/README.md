@@ -31,7 +31,7 @@ multiple PHP versions and optional extra's.
 * [Xdebug](Installation/PHP-Xdebug.md)
 * [Composer](Installation/PHP-Composer.md)
 * [Drush](Installation/Drupal-Drush.md)
-* [MailHog](Installation/Mailhog.md)
+* [Mailpit](Installation/Mailpit.md)
 * [Management](Installation/Management.md)
 
 ### Optional extra's

@@ -147,5 +147,5 @@ $options['structure-tables-key'] = 'common';
 
 ---
 
-* [Next : Mailhog](./Mailhog.md)
+* [Next : Mailpit](./Mailpit.md)
 * [Overview](../README.md)
