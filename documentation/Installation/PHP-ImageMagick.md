@@ -23,8 +23,8 @@ Please provide the prefix of Imagemagick installation [autodetect] : <enter>
 Install ImageMagick for each installed PHP version:
 
 ```bash
-sphp 8.2 && pecl install imagick
 sphp 8.3 && pecl install imagick
+sphp 8.4 && pecl install imagick
 ```
 
 ## Update ImageMagick extension

@@ -37,6 +37,7 @@ multiple PHP versions and optional extra's.
 ### Optional extra's
 
 * [Apache Solr](Optional/Apache-Solr.md)
+* [PHP AMQP](Optional/PHP-AMQP.md)
 * [Java](Optional/Java.md)
 * [Node JS](Optional/Node-js.md)
 * [Python](Optional/Python.md)
