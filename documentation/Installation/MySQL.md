@@ -11,7 +11,7 @@ This saves time.
 
 Install MySQL with Homebrew:
 
-```bash
+```shell
 brew install mysql
 ```
 
@@ -28,10 +28,10 @@ instead of a few large InnoDB data files.
 The following is a single, multi-line command. Copy and paste the entire 
 block at once:
 
-```bash
-cat >> $(brew --prefix)/etc/my.cnf.d/mysqld.cnf <<'EOF'
+```shell
+cat >> $(brew --prefix)/etc/my.cnf <<'EOF'
 
-[mysqld] 
+# START HAMMP - mysqld
 skip-external-locking
 key_buffer_size = 96M
 max_allowed_packet = 64M
@@ -46,13 +46,15 @@ thread_stack = 128K
 query_cache_size = 16M
 thread_cache_size = 4
 transaction_isolation = "READ-COMMITTED"
+# END HAMMP - mysqld
  
 EOF
 ```
 
-```bash
-cat >> $(brew --prefix)/etc/my.cnf.d/innodb.cnf <<'EOF'
+```shell
+cat >> $(brew --prefix)/etc/my.cnf <<'EOF'
 
+# START HAMMP - innodb
 [innodb]
 innodb_file_per_table = 1
 innodb_buffer_pool_size = 1G
@@ -61,6 +63,7 @@ innodb_flush_log_at_trx_commit = 2
 innodb_thread_concurrency = 8
 innodb_flush_method = O_DIRECT
 innodb_log_file_size = 32MB
+# END HAMMP - innodb
 
 EOF
 ```
@@ -70,7 +73,7 @@ EOF
 Start MySQL with the Homebrew command. This will also register the service to
 MacOS launchd so it starts after the OS is booted:
 
-```bash
+```shell
 brew services start mysql
 ```
 
@@ -81,7 +84,7 @@ By default, MySQL's root user has an empty password from any connection.
 You are advised to run mysql_secure_installation and at least set a password 
 for the root user:
 
-```bash
+```shell
 $(brew --prefix mysql)/bin/mysql_secure_installation
 ```
 
@@ -156,7 +159,7 @@ finished; reset the password with following commands:
 Stop the MySQL server:
 
 ```shell
-
+brew services stop mysql
 ```
 
 Use your macbook password when asked:
@@ -172,10 +175,16 @@ own:
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'newrootpassword';
 ```
 
-Logout from Mariadb:
+Logout from MySQL:
 
 ```mysql
 exit
+```
+
+Start the MySQL service:
+
+```shell
+brew services start mysql
 ```
 
 You should now be able to perform the security step from above.
