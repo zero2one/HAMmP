@@ -52,12 +52,12 @@ sed -e 's/;*sendmail_path =.*/sendmail_path = \/usr\/local\/bin\/mailpit sendmai
 ```
 
 > *Note* : Run the command multiple times and replace [VERSION] by the different
-> installed PHP versions (8.3, 8.4, ...).
+> installed PHP versions (8.4, 8.5, ...).
 
 Restart PHP to activate configuration changes
 
 ```bash
-sphp 8.4
+sphp 8.5
 ```
 
 ## Source 

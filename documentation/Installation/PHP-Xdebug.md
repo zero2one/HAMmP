@@ -11,27 +11,30 @@ More info see the [Xdebug website](https://xdebug.org/).
 
 ## Install Xdebug
 
+> [!WARNING]
+> As of 20 November 2025, Xdebug support for PHP 8.5 has not yet been released.
+
 ```shell
-sphp 8.3 && pecl install xdebug
 sphp 8.4 && pecl install xdebug
+sphp 8.5 && pecl install xdebug
 ```
 
 This will automatically add the extension to php.ini.
 
 > [!WARNING]
-> It is possible that the extension for PHP 8.4 can not be loaded by default
+> It is possible that the extension for PHP 8.5 can not be loaded by default
 > from the installed directory. You can fix this by altering the extension path
 > in php.ini
 
 ```shell
-vi $(brew --prefix)/etc/php/8.4/php.ini
+vi $(brew --prefix)/etc/php/8.5/php.ini
 ```
 
 The installation location of the zend extension is displayed on the screen after
 the pecl package is compiled. Copy it and use it on top of php.ini:
 
 ```ini
-zend_extension="/usr/local/Cellar/php/8.4.4/pecl/20240924/xdebug.so"
+zend_extension="/usr/local/Cellar/php/8.5.4/pecl/20240924/xdebug.so"
 ```
 
 ##	Configure Xdebug
@@ -54,7 +57,7 @@ xdebug.remote_handler="dbgp"
 EOF
 ```
 
-Instead of [php-version] use one of the: 8.3 or 8.4 depending on your
+Instead of [php-version] use one of the: 8.4 or 8.5 depending on your
 installed versions.
 
 > Note : we change the default port 9000 to 10000 since 9000 is already in use
@@ -65,7 +68,7 @@ installed versions.
 Restart the PHP-FPM service so it loads the changed configuration.
 
 ```shell
-sphp 8.3
+sphp 8.5
 ```
 
 ## Test

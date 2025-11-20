@@ -16,8 +16,8 @@ brew install rabbitmq-c
 Install for every PHP version that requires the extension:
 
 ```bash
-sphp 8.3 && pecl install amqp
 sphp 8.4 && pecl install amqp
+sphp 8.5 && pecl install amqp
 ```
 
 Hit enter to autodetect when it ask for the location of the library:
@@ -29,8 +29,8 @@ Set the path to librabbitmq install prefix [autodetect] :
 Reload PHP after installing:
 
 ```bash
-sphp 8.3
 sphp 8.4
+sphp 8.5
 ```
 
 It should now be in the php info output: https://localhost/phpinfo.php.

@@ -3,7 +3,7 @@
 ## Install multiple PHP version
 
 We want an environment where we can switch between the current active PHP 
-versions. These are 8.1.x and 8.2.x
+versions. These are 8.4.x and 8.5.x
 
 This describes how to setup Apache with multiple PHP versions.
 
@@ -20,8 +20,8 @@ brew tap shivammathur/php
 Now we can install whatever version we need, all the way back to 7.0:
 
 ```bash
-brew install shivammathur/php/php@8.2
-brew install shivammathur/php/php@8.3
+brew install shivammathur/php/php@8.4
+brew install shivammathur/php/php@8.5
 ```
 
 ## Configure PHP
@@ -44,16 +44,16 @@ We update:
 
 We need to update the config for each PHP version:
 
-#### PHP 8.2
+#### PHP 8.4
 
 ```bash
-sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.2-error.log'$'\n' $(brew --prefix)/etc/php/8.2/php.ini
+sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.4-error.log'$'\n' $(brew --prefix)/etc/php/8.4/php.ini
 ```
 
-#### PHP 8.3
+#### PHP 8.5
 
 ```bash
-sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.3-error.log'$'\n' $(brew --prefix)/etc/php/8.3/php.ini
+sed -i '-default' -e 's|^;\(date\.timezone[[:space:]]*=\).*|\1 \"'$(sudo systemsetup -gettimezone|awk -F"\: " '{print $2}')'\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 512M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 30|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|; $a\'$'\n''\'$'\n''; PHP Error log\'$'\n''error_log = /Volumes/webdev/www/_apache/log/php@8.5-error.log'$'\n' $(brew --prefix)/etc/php/8.5/php.ini
 ```
 
 ### Fix segmentation fault
@@ -72,16 +72,16 @@ env['LC_ALL'] = C
 Add this to all PHP versions in use:
 
 ```bash
-vi $(brew --prefix)/etc/php/8.2/php-fpm.d/www.conf
-vi $(brew --prefix)/etc/php/8.3/php-fpm.d/www.conf
+vi $(brew --prefix)/etc/php/8.4/php-fpm.d/www.conf
+vi $(brew --prefix)/etc/php/8.5/php-fpm.d/www.conf
 ```
 
-## Switch back to PHP 8.2
+## Switch back to PHP 8.4
 
-Switch pack to PHP 8.2 (or the lowest version you have installed).
+Switch pack to PHP 8.4 (or the lowest version you have installed).
 
 ```bash
-brew unlink php@8.3 && brew link --force --overwrite php@8.2
+brew unlink php@8.5 && brew link --force --overwrite php@8.4
 ```
 
 Close all terminal windows and open a new one. This will open a new session with
@@ -96,10 +96,8 @@ php -v
 This should show you the version you just switched back to.
 
 ```
-PHP 8.1.14 (cli) (built: Jan  6 2023 01:07:29) (NTS)
-Copyright (c) The PHP Group
-Zend Engine v4.1.14, Copyright (c) Zend Technologies
-    with Zend OPcache v8.1.14, Copyright (c), by Zend Technologies
+PHP 8.4.15 (cli) (built: Nov 18 2025 17:26:05) (NTS)
+...
 ```
 
 ## Restart Apache
@@ -117,7 +115,7 @@ clone locally during the Apache installation) contains already the configuration
 to serve PHP scripts using PHP-FPM. We only need to start the PHP-FPM service: 
 
 ```bash
-brew services start php@8.2
+brew services start php@8.4
 ```
 
 The config is located at `/Volumes/webdev/www/_apache/conf.d/php-fpm.conf`.
@@ -137,8 +135,8 @@ a helper script to switch between the different PHP versions.
 Run the command with the PHP version you want to enable:
 
 ```
-sphp 8.2
-sphp 8.3
+sphp 8.4
+sphp 8.5
 ```
 
 ## Certificate files
@@ -152,8 +150,8 @@ You need to add the keychain ca files to the PHP configuration:
 Edit the ini file of the proper PHP version:
 
 ```bash
-vi $(brew --prefix)/etc/php/8.2/php.ini
-vi $(brew --prefix)/etc/php/8.3/php.ini
+vi $(brew --prefix)/etc/php/8.4/php.ini
+vi $(brew --prefix)/etc/php/8.5/php.ini
 ```
 
 Uncomment and fill in the keychain paths:
