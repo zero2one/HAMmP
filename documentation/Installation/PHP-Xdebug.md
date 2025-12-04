@@ -34,7 +34,7 @@ The installation location of the zend extension is displayed on the screen after
 the pecl package is compiled. Copy it and use it on top of php.ini:
 
 ```ini
-zend_extension="/usr/local/Cellar/php/8.5.4/pecl/20240924/xdebug.so"
+zend_extension="/opt/homebrew/Cellar/php/8.5.4/pecl/20240924/xdebug.so"
 ```
 
 ##	Configure Xdebug

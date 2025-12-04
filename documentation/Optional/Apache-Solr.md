@@ -38,7 +38,7 @@ Creating a new core in Solr is very simple:
 solr create -c CORE_NAME
 ```
    
-The new core will be created in `/usr/local/opt/solr/server/solr/CORE_NAME`.
+The new core will be created in `$(brew --prefix)/opt/solr/server/solr/CORE_NAME`.
    
 This is also the directory where the config files are located.
 

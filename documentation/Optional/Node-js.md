@@ -24,7 +24,7 @@ Add the following to ~/.bash_profile or your desired shell:
 
 ```bash
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+. "$(brew --prefix)/opt/nvm/nvm.sh"
 ```
 
 ## Install Node

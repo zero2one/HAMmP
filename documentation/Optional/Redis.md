@@ -17,7 +17,7 @@ configuring. Just leave it and continue to following some tasks on this article.
 Register Redis to the Launch Agents:
 
 ```bash
-$ ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+$ ln -sfv $(brew --prefix)/opt/redis/*.plist ~/Library/LaunchAgents
 ```
 
 Start Redis server via “launchctl”.
@@ -29,7 +29,7 @@ $ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 Start Redis server using configuration file.
 
 ```bash
-$ redis-server /usr/local/etc/redis.conf
+$ redis-server $(brew --prefix)/etc/redis.conf
 ```
 
 Unregister Redis autostart on computer start.
@@ -42,7 +42,7 @@ $ launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 
 Location of Redis configuration file.
 
-* `/usr/local/etc/redis.conf`
+* `$(brew --prefix)/etc/redis.conf`
 
 ## Uninstall
 

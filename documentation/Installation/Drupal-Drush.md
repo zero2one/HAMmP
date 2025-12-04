@@ -35,7 +35,7 @@ However, it is inconvenient to type `vendor/bin/drush` in order to execute Drush
 ```shell
 curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.10.2/drush.phar
 chmod +x drush.phar
-sudo mv drush.phar /usr/local/bin/drush
+sudo mv drush.phar $(brew --prefix)/bin/drush
 ```
 
 ## Commands

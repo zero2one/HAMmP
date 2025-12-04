@@ -10,7 +10,7 @@ mariadb --version
 
 ## Config file
 
-The MariaDB config file is located at `/usr/local/etc/my.cnf``
+The MariaDB config file is located at `$(brew --prefix)/etc/my.cnf``
 
 ## Log file
 

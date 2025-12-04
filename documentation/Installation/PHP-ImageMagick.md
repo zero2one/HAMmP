@@ -45,7 +45,7 @@ The installation location of the zend extension is displayed on the screen after
 the pecl package is compiled. Copy it and use it on top of php.ini:
 
 ```ini
-extension="/usr/local/Cellar/php/8.5.4/pecl/20240924/imagick.so"
+extension="/opt/homebrew/Cellar/php/8.5.4/pecl/20240924/imagick.so"
 ```
 
 ## Update ImageMagick extension

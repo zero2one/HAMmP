@@ -17,7 +17,7 @@ We install Tika trough Homebrew:
 brew install tika
 ```
 
-This will install the latest Tika version in `/usr/local/bin/tika`.
+This will install the latest Tika version in `$(brew --prefix)/bin/tika`.
 
 You can run Tika directly from the command line:
 
@@ -31,7 +31,7 @@ The [search_api_attachments](https://www.drupal.org/project/search_api_attachmen
 module supports extracting (through Tika) document content and store it in the
 search engine index.
 
-Set the proper path (`/usr/local/bin/tika`) to Tika in the module settings.
+Set the proper path (`/opt/homebrew/bin/tika`) to Tika in the module settings.
 
 ---
 

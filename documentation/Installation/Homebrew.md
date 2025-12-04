@@ -6,7 +6,7 @@ Install homebrew as described in their documentation:
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/peter.decuyper/.zprofile
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/USERNAME/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
@@ -17,7 +17,7 @@ commands that not can find binaries installed trough homebrew.
 Run the following command and reboot to fix this:
 
 ```shell
-sudo launchctl config user path /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+sudo launchctl config user path /opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
 ## Wget

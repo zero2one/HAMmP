@@ -107,8 +107,8 @@ alias php84="$(brew --prefix)/opt/php@8.4/bin/php"
 Add after this aliases also composer & drush aliases:
 
 ```
-alias composer84="php84 /usr/local/bin/composer"
-alias drush84="php84 /Users/cuyperpe/.composer/vendor/bin/drush"
+alias composer84="php84 $(brew --prefix)/bin/composer"
+alias drush84="php84 /Users/USERNAME/.composer/vendor/bin/drush"
 ```
 
 ## Sources

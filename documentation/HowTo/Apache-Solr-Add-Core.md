@@ -22,7 +22,7 @@ Created new core 'CORE_NAME'
 The new core will be located at:
 
 ```text
-/usr/local/var/lib/solr/CORE_NAME
+$(brew --prefix)/var/lib/solr/CORE_NAME
 ```
 
 > Note : Solr must be running to create a core through command line because it 
@@ -66,7 +66,7 @@ depending on the Solr version. Those files are located at:
 Copy all those files to the configuration.
 
 ```bash
-cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates/8.x/* /usr/local/var/lib/solr/CORE_NAME/conf/
+cp -r /path/to/sites/all/modules/contrib/search_api_solr/solr-conf-templates/8.x/* $(brew --prefix)/var/lib/solr/CORE_NAME/conf/
 ```
 
 Restart Solr to pick up the new configuration.
