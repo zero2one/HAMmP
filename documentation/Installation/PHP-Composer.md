@@ -38,5 +38,5 @@ brew upgrade composer
 
 ---
 
-* [Next : Drush](Drupal-Drush.md)
+* [Next : Mailpit](./Mailpit.md)
 * [Overview](../README.md)

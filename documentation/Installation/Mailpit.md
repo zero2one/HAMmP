@@ -48,7 +48,7 @@ Every PHP version needs to be updated so email are send locally to MailHog
 instead of to real users:
 
 ```bash
-sed -e 's/;*sendmail_path =.*/sendmail_path = \/usr\/local\/bin\/mailpit sendmail test@test/' -i.bak $(brew --prefix)/etc/php/[VERSION]/php.ini
+sed -e 's/;*sendmail_path =.*/sendmail_path = \/opt\/homebrew\/bin\/mailpit sendmail test@test/' -i.bak $(brew --prefix)/etc/php/[VERSION]/php.ini
 ```
 
 > *Note* : Run the command multiple times and replace [VERSION] by the different

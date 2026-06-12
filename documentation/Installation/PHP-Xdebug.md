@@ -11,31 +11,12 @@ More info see the [Xdebug website](https://xdebug.org/).
 
 ## Install Xdebug
 
-> [!WARNING]
-> As of 20 November 2025, Xdebug support for PHP 8.5 has not yet been released.
-
 ```shell
-sphp 8.4 && pecl install xdebug
-sphp 8.5 && pecl install xdebug
+sphp 8.4 && pie install xdebug/xdebug
+sphp 8.5 && pie install xdebug/xdebug
 ```
 
 This will automatically add the extension to php.ini.
-
-> [!WARNING]
-> It is possible that the extension for PHP 8.5 can not be loaded by default
-> from the installed directory. You can fix this by altering the extension path
-> in php.ini
-
-```shell
-vi $(brew --prefix)/etc/php/8.5/php.ini
-```
-
-The installation location of the zend extension is displayed on the screen after
-the pecl package is compiled. Copy it and use it on top of php.ini:
-
-```ini
-zend_extension="/opt/homebrew/Cellar/php/8.5.4/pecl/20240924/xdebug.so"
-```
 
 ##	Configure Xdebug
 

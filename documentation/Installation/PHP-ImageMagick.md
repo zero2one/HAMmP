@@ -22,12 +22,9 @@ Please provide the prefix of Imagemagick installation [autodetect] : <enter>
 
 Install ImageMagick for each installed PHP version:
 
-> [!WARNING]
-> As of 20 November 2025, Imagick support for PHP 8.5 has not yet been released.
-
 ```shell
-sphp 8.4 && pecl install imagick
-sphp 8.5 && pecl install imagick
+sphp 8.4 && pie install imagick/imagick
+sphp 8.5 && pie install imagick/imagick
 ```
 
 This will automatically add the extension to php.ini.
@@ -67,8 +64,8 @@ vi $(brew --prefix)/etc/php/8.5/php.ini
 Reinstall ImageMagick for all PHP versions:
 
 ```shell
-sphp 8.4 && pecl install -f imagick
-sphp 8.5 && pecl install -f imagick
+sphp 8.4 && pie install imagick/imagick --force
+sphp 8.5 && pie install imagick/imagick --force
 ```
 
 ---

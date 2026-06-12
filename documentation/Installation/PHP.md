@@ -186,5 +186,5 @@ used Apache mod-php.
 
 ---
 
-* [Next : ImageMagick](PHP-ImageMagick.md)
+* [Next : Pie](PHP-Pie.md)
 * [Overview](../README.md)
