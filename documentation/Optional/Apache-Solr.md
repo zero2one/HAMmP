@@ -4,8 +4,9 @@
 
 Install Solr with homebrew:
 
-> Note : Solr requires Java, [install java trough homebrew](./Java.md) if not
-yet installed.
+> [!NOTE]
+> Solr 10.0 is recently released, Drupal does not support 10 yet.
+> [See documentation how to install previous versions](./Apache-Solr-specific-version.md)
 
 ```bash
 brew instal solr
