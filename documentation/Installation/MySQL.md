@@ -17,13 +17,13 @@ brew install mysql
 
 ## Configuration
 
-We change the default MySQL configuration.
+We change the default MySQL configuration. This will:
 
-This will configure MySQL to allow for the maximum packet size, only 
-appropriate for a local or development server. Also, we'll keep each InnoDB 
-table in separate files to keep ibdataN-type file sizes low and make 
-file-based backups, like Time Machine, easier to manage multiple small files 
-instead of a few large InnoDB data files. 
+- Set the location of the sock file.
+- Set port to 3306 and allow only local connections.
+- Set the proper `transaction-isolation` value as requested by Drupal.
+- Set the proper `innodb_flush_log_at_trx_commit` value to avoid cache-race
+  issues.
 
 The following is a single, multi-line command. Copy and paste the entire 
 block at once:
@@ -31,40 +31,18 @@ block at once:
 ```shell
 cat >> $(brew --prefix)/etc/my.cnf <<'EOF'
 
-# START HAMMP - mysqld
-skip-external-locking
-key_buffer_size = 96M
-max_allowed_packet = 64M
-join_buffer_size = 256K
-table_open_cache = 512
-table_definition_cache = 512
-sort_buffer_size = 256K
-read_buffer_size = 256K
-read_rnd_buffer_size = 256K
-net_buffer_length = 2K
-thread_stack = 128K
-query_cache_size = 16M
-thread_cache_size = 4
-transaction_isolation = "READ-COMMITTED"
-# END HAMMP - mysqld
- 
-EOF
-```
+# START HAMMP
+socket = /tmp/mysql.sock
 
-```shell
-cat >> $(brew --prefix)/etc/my.cnf <<'EOF'
-
-# START HAMMP - innodb
-[innodb]
-innodb_file_per_table = 1
-innodb_buffer_pool_size = 1G
-innodb_log_buffer_size = 4M
+[mysqld]
+socket = /tmp/mysql.sock
+port = 3306
+bind_address = 127.0.0.1
+max_connections = 150
+transaction-isolation = READ-COMMITTED
 innodb_flush_log_at_trx_commit = 2
-innodb_thread_concurrency = 8
-innodb_flush_method = O_DIRECT
-innodb_log_file_size = 32MB
-# END HAMMP - innodb
-
+# END HAMMP
+ 
 EOF
 ```
 
